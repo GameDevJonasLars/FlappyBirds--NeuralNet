@@ -1,7 +1,10 @@
-package com.game;
+package com.engine;
 
 import java.awt.Color;
 import java.awt.Rectangle;
+
+import com.game.MainGame;
+import com.tools.Time;
 
 public class Engine extends Thread {
 	private boolean isRunning;

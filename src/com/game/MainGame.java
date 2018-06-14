@@ -5,6 +5,10 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.engine.Engine;
+import com.engine.Frame;
+import com.engine.Window;
+
 public class MainGame {
 	public static int WIDTH = 1200;
 	public static int HEIGHT = 900;

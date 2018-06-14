@@ -1,6 +1,8 @@
-package com.game;
+package com.engine;
 
 import javax.swing.JFrame;
+
+import com.game.MainGame;
 
 public class Frame extends JFrame {
 	public Frame() {
