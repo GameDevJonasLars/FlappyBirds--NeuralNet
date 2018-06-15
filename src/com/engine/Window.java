@@ -21,7 +21,7 @@ public class Window extends JPanel {
 	private List<Text> texte = new ArrayList<Text>();
 	private List<Oval> ovale = new ArrayList<Oval>();
 	private Color background;
-
+	int b = 0;
 	public Window() {
 		background = Color.WHITE;
 	}
@@ -40,10 +40,16 @@ public class Window extends JPanel {
 			g2.fillRect(rectangle.getiX(), rectangle.getiY(), rectangle.getiWidth(), rectangle.getiHeight());
 		}
 		for (Oval oval : ovale) {
+			g2.translate(oval.getiX(), oval.getiY());
+			g2 = (Graphics2D) g.create();
+			g2.rotate(-0.3);
 			g2.setColor(new Color(oval.getiCol1(), oval.getiCol2(), oval.getiCol3()));
-			g2.fillOval(oval.getiX(), oval.getiY(), oval.getiWidth(), oval.getiHeight());
+			g2.fillOval(0, 0, oval.getiWidth(), oval.getiHeight());
+			g2.dispose();
+			g2 = (Graphics2D) g;
 		}
 		for (Text text : texte) {
+			
 			g2.setFont(text.getFoFont());
 			g2.setColor(Color.BLACK);
 			g2.drawString(text.getsText(), text.getiX(), text.getiY());
