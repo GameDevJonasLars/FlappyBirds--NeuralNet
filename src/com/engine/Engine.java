@@ -1,6 +1,7 @@
 package com.engine;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 
 import com.game.MainGame;
@@ -31,6 +32,7 @@ public class Engine extends Thread {
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
 		window.addRect(100, 100, 400, 200, Color.BLACK);
+		window.addText("Hallo", 0, 50, 100);
 		// window.addRect(101, 101, 398, 198, Color.WHITE);
 	}
 
