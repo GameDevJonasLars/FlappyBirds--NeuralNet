@@ -6,6 +6,7 @@ import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 
+import com.game.Bird;
 import com.game.MainGame;
 import com.tools.Time;
 
@@ -15,7 +16,7 @@ public class Engine extends Thread {
 	private Window window;
 	private MouseListenerWin maus;
 	private boolean bWasPressed; 
-	float b = 0;
+	private Bird jonas;
 
 	public Engine(Window window) {
 		isRunning = true;
@@ -23,6 +24,7 @@ public class Engine extends Thread {
 		FPS_CAP = 60;
 		this.window = window;
 		maus = new MouseListenerWin();
+		jonas = new Bird(window);
 	}
 
 	public void stopEngine() {
@@ -30,20 +32,19 @@ public class Engine extends Thread {
 	}
 
 	public void render() {
-		b += 0.5f;
-		window.getOvale().get(0).mov(0, (int)b);
+		
 		window.repaint();
 	}
 	
 	public void update() {
-		
+		jonas.update();
 	}
 	
 	public void input() {
 		
 		if(maus.isbPressed() && !bWasPressed) {
 			bWasPressed = true;
-			b = -15;
+			jonas.flap();
 		}
 		
 		
@@ -57,6 +58,7 @@ public class Engine extends Thread {
 		window.setBackground(Color.CYAN);
 		window.addOval(100, 100, 50, 50, Color.BLACK);
 		window.addText("Hallo", 0, 50, 100);
+		jonas.init();
 	}
 
 	public void run() {
@@ -66,12 +68,12 @@ public class Engine extends Thread {
 		int iFrames = 0;
 		initGraph();
 		while (isRunning) {
-			update();
 			long lTime = Time.getTime();
 			if (lTime - lZeit > (1000000000 / FPS_CAP)) {
 				iFrames++;
 				lZeit = lTime;
 				input();
+				update();
 				render();
 			}
 			if (lTime - lZeitFrame > (1000000000)) {
