@@ -68,7 +68,7 @@ public class Network {
 	public double[][][] getWeights(){
 		
 		double [][][] dWeights = 
-				new double [lNetwork.size()][ArrayListFunktions.maxI(iStructure)][ArrayListFunktions.maxI(iStructure)];
+				new double [lNetwork.size()][ArrayListTools.maxI(iStructure)][ArrayListTools.maxI(iStructure)];
 		
 		for (int i = 0; i < lNetwork.size(); i++) {
 			for (int iZ = 0; iZ < lNetwork.get(i).nLayer.size(); iZ++) {
