@@ -11,5 +11,6 @@ public class Frame extends JFrame {
 		super.setVisible(true);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		super.setResizable(false);
+		super.addMouseListener(new MouseListenerWin());
 	}
 }

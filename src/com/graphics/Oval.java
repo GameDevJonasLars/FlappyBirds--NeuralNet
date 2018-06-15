@@ -2,7 +2,7 @@ package com.graphics;
 
 import java.awt.Color;
 
-public class Rechteck {
+public class Oval {
 	private int iX;
 	private int iY;
 	private int iWidth;
@@ -12,7 +12,7 @@ public class Rechteck {
 	private int iCol2;
 	private int iCol3;
 
-	public Rechteck(int iX, int iY, int iWidth, int iHeight, int iCol1, int iCol2, int iCol3) {
+	public Oval(int iX, int iY, int iWidth, int iHeight, int iCol1, int iCol2, int iCol3) {
 		this.iX = iX;
 		this.iY = iY;
 		this.iWidth = iWidth;
@@ -22,7 +22,7 @@ public class Rechteck {
 		this.iCol3 = iCol3;
 	}
 
-	public Rechteck(int iX, int iY, int iWidth, int iHeight, Color col) {
+	public Oval(int iX, int iY, int iWidth, int iHeight, Color col) {
 		this.iX = iX;
 		this.iY = iY;
 		this.iWidth = iWidth;
@@ -87,6 +87,7 @@ public class Rechteck {
 	public void setiCol3(int iCol3) {
 		this.iCol3 = iCol3;
 	}
+
 	public void mov(int iX, int iY) {
 		this.iX += iX;
 		this.iY += iY;
