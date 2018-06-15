@@ -1,6 +1,7 @@
 package com.ai;
 
 import java.util.ArrayList;
+import com.tools.*;
 
 public class Population {
 	
@@ -102,6 +103,22 @@ public class Population {
 		nPopulation.get(iNetworkNum).setFitness(dFitness);
 	}
 	
+	public double getFitness (int iNetworkNum) {
+		double dfitness = nPopulation.get(iNetworkNum).getFitness();
+		return dfitness;
+	}
+	
+	public ArrayList<Double> getFitnessOfAll () {
+		
+		ArrayList<Double> dFitnessOfAll = new ArrayList<Double>();
+		
+		for (int i = 0; i < nPopulation.size(); i++) {
+			dFitnessOfAll.add(nPopulation.get(i).getFitness());
+		}
+		
+		return dFitnessOfAll;
+	}
+	
 	public Boolean giveTask(ArrayList<Double> dInputs, int NetworkIndex) {
 		if (dInputs.size() == iInputNum) {
 			nPopulation.get(NetworkIndex).feedFoward(dInputs);
@@ -178,8 +195,18 @@ public class Population {
 		return nNetworkCopy;
 	}
 	
-	public void selection() {
+	public void selection(int surviveRate) {
 
+		int survivingNum = (int) (nPopulation.size() / surviveRate);
+		
+		while (nPopulation != null) {
+		
+			if (nPopulation.size() > survivingNum) {
+				nPopulation.remove(ArrayListTools.indexOfMinD(getFitnessOfAll()));
+			} else {
+				break;
+			}
+		}
 	}
 
 	public void breed() {
