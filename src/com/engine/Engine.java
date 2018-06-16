@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 import com.game.Bird;
 import com.game.MainGame;
+import com.game.Punkte;
 import com.game.RohrBlockade;
 import com.tools.Time;
 
@@ -24,7 +25,6 @@ public class Engine extends Thread {
 	private boolean bWasPressed; 
 	private Bird jonas;
 	private RohrBlockade rohr;
-	private int iHighscore;
 	private int iTextPunkte;
 	private int iTextHighscore;
 	private int iBoden;
@@ -51,12 +51,13 @@ public class Engine extends Thread {
 	public void update() {
 		jonas.update();
 		rohr.update();
+		rohr.collision();
 		jonas.collision();
-		window.getTexte().get(iTextPunkte).setsText("Punkte: "+jonas.getiPunkte());
-		if (jonas.getiPunkte() > iHighscore) {
-			iHighscore = jonas.getiPunkte();
+		window.getTexte().get(iTextPunkte).setsText("Punkte: "+Punkte.iPunkte);
+		if (Punkte.iPunkte > Punkte.iHighscore) {
+			Punkte.iHighscore = Punkte.iPunkte;
 		}
-		window.getTexte().get(iTextHighscore).setsText("Highscore: "+iHighscore);
+		window.getTexte().get(iTextHighscore).setsText("Highscore: "+Punkte.iHighscore);
 	}
 	
 	public void input() {
@@ -80,6 +81,8 @@ public class Engine extends Thread {
 		iTextHighscore = window.addText("Highscore: 0", 800, 80);
 		jonas.init();
 		rohr.init();
+		Punkte.iPunkte = 0;
+		Punkte.iHighscore = 0;
 	}
 
 	public void run() {

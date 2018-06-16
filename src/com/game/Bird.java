@@ -13,7 +13,6 @@ import com.graphics.Rechteck;
 public class Bird {
 	private Window window;
 	private int iBody;
-	private int iPunkte;
 	private float fMov;
 
 	public Bird(Window window) {
@@ -31,7 +30,7 @@ public class Bird {
 		} else if (fMov == 0) {
 			window.getSprites().get(iBody).setdRotate(0);
 		}
-		iPunkte++;
+		Punkte.iPunkte++;
 	}
 
 	public void render() {
@@ -45,7 +44,7 @@ public class Bird {
 								window.getRects().get(0).getiWidth(), window.getRects().get(0).getiHeight()))) {
 			window.getSprites().get(iBody).setiY(100);
 			fMov = 0;
-			iPunkte = 0;
+			Punkte.iPunkte = 0;
 		}
 	}
 
@@ -60,10 +59,6 @@ public class Bird {
 
 	public void flap() {
 		fMov = -10;
-	}
-
-	public int getiPunkte() {
-		return iPunkte;
 	}
 
 }
