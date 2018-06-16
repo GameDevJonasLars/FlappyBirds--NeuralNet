@@ -42,26 +42,26 @@ public class Window extends JPanel {
 		g2.fillRect(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
 		for (Rechteck rectangle : rects) {
 
-			g2.translate(rectangle.getiX(), rectangle.getiY());
+			g2.translate(rectangle.getiX()+rectangle.getiWidth()/2, rectangle.getiY()+rectangle.getiHeight()/2);
 			g2 = (Graphics2D) g.create();
 			g2.rotate(rectangle.getdRotate());
 			g2.setColor(new Color(rectangle.getiCol1(), rectangle.getiCol2(), rectangle.getiCol3()));
 			g2.fillRect(0-rectangle.getiWidth()/2, 0-rectangle.getiHeight()/2, rectangle.getiWidth(), rectangle.getiHeight());
 			g2.dispose();
 			g2 = (Graphics2D) g;
-			g2.translate(-rectangle.getiX(), -rectangle.getiY());
+			g2.translate(-(rectangle.getiX()+rectangle.getiWidth()/2), -(rectangle.getiY()+rectangle.getiHeight()/2));
 
 
 		}
 		for (Sprite sprite : sprites) {
 
-			g2.translate(sprite.getiX(), sprite.getiY());
+			g2.translate(sprite.getiX()+sprite.getiWidth()/2, sprite.getiY()+sprite.getiHeight()/2);
 			g2 = (Graphics2D) g.create();
 			g2.rotate(sprite.getdRotate());
 			g2.drawImage(sprite.getImg() ,null , 0-sprite.getiWidth()/2, 0-sprite.getiHeight()/2);
 			g2.dispose();
 			g2 = (Graphics2D) g;
-			g2.translate(-sprite.getiX(), -sprite.getiY());
+			g2.translate(-(sprite.getiX()+sprite.getiWidth()/2), -(sprite.getiY()+sprite.getiHeight()/2));
 
 
 		}
@@ -82,14 +82,14 @@ public class Window extends JPanel {
 		}
 		for (Oval oval : ovale) {
 
-			g2.translate(oval.getiX(), oval.getiY());
+			g2.translate(oval.getiX()+oval.getiWidth()/2, oval.getiY()+oval.getiHeight()/2);
 			g2 = (Graphics2D) g.create();
 			g2.rotate(oval.getdRotate());
 			g2.setColor(new Color(oval.getiCol1(), oval.getiCol2(), oval.getiCol3()));
 			g2.fillOval(0-oval.getiWidth()/2, 0-oval.getiHeight()/2, oval.getiWidth(), oval.getiHeight());
 			g2.dispose();
 			g2 = (Graphics2D) g;
-			g2.translate(-oval.getiX(), -oval.getiY());
+			g2.translate(-(oval.getiX()+oval.getiWidth()/2), -(oval.getiY()+oval.getiHeight()/2));
 
 
 		}

@@ -36,9 +36,9 @@ public class Bird {
 	}
 	
 	public void collision() {
-		if (window.getSprites().get(iBody).getiY()>700-window.getSprites().get(iBody).getiHeight()/2) {
+		if (window.getSprites().get(iBody).getiY()>700-window.getSprites().get(iBody).getiHeight()) {
 			window.getSprites().get(iBody).setiY(100);
-			fMov = 0;
+			//fMov = 0;
 			iPunkte = 0;
 		}
 	}
