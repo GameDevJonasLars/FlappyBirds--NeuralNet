@@ -77,8 +77,6 @@ public class Window extends JPanel {
 			g2.dispose();
 			g2 = (Graphics2D) g;
 			g2.translate(-text.getiX(), -text.getiY());
-
-
 		}
 		for (Oval oval : ovale) {
 

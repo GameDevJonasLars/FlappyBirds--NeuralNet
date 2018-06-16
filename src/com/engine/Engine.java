@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 
 import com.game.Bird;
 import com.game.MainGame;
+import com.game.RohrBlockade;
 import com.tools.Time;
 
 public class Engine extends Thread {
@@ -22,7 +23,11 @@ public class Engine extends Thread {
 	private MouseListenerWin maus;
 	private boolean bWasPressed; 
 	private Bird jonas;
+	private RohrBlockade rohr;
 	private int iHighscore;
+	private int iTextPunkte;
+	private int iTextHighscore;
+	private int iBoden;
 
 	public Engine(Window window) {
 		isRunning = true;
@@ -31,6 +36,7 @@ public class Engine extends Thread {
 		this.window = window;
 		maus = new MouseListenerWin();
 		jonas = new Bird(window);
+		rohr = new RohrBlockade(window);
 	}
 
 	public void stopEngine() {
@@ -44,12 +50,13 @@ public class Engine extends Thread {
 	
 	public void update() {
 		jonas.update();
+		rohr.update();
 		jonas.collision();
-		window.getTexte().get(0).setsText("Punkte: "+jonas.getiPunkte());
+		window.getTexte().get(iTextPunkte).setsText("Punkte: "+jonas.getiPunkte());
 		if (jonas.getiPunkte() > iHighscore) {
 			iHighscore = jonas.getiPunkte();
 		}
-		window.getTexte().get(1).setsText("Highscore: "+iHighscore);
+		window.getTexte().get(iTextHighscore).setsText("Highscore: "+iHighscore);
 	}
 	
 	public void input() {
@@ -68,10 +75,11 @@ public class Engine extends Thread {
 
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
-		window.addRect(0, MainGame.HEIGHT-200, MainGame.WIDTH*2, 200, Color.GREEN);
-		window.addText("Punkte: 0", 800, 50);
-		window.addText("Highscore: 0", 800, 80);
+		iBoden = window.addRect(0, MainGame.HEIGHT-200, MainGame.WIDTH*2, 200, Color.GREEN);
+		iTextPunkte = window.addText("Punkte: 0", 800, 50);
+		iTextHighscore = window.addText("Highscore: 0", 800, 80);
 		jonas.init();
+		rohr.init();
 	}
 
 	public void run() {
