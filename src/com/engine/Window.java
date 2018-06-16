@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.game.MainGame;
+import com.game.ObjektListe;
+import com.game.Objekte;
 import com.graphics.Oval;
 import com.graphics.Rechteck;
 import com.graphics.Sprite;
@@ -42,84 +44,92 @@ public class Window extends JPanel {
 		g2.fillRect(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
 		for (Rechteck rectangle : rects) {
 
-			g2.translate(rectangle.getiX()+rectangle.getiWidth()/2, rectangle.getiY()+rectangle.getiHeight()/2);
+			g2.translate(rectangle.getiX() + rectangle.getiWidth() / 2, rectangle.getiY() + rectangle.getiHeight() / 2);
 			g2 = (Graphics2D) g.create();
 			g2.rotate(rectangle.getdRotate());
 			g2.setColor(new Color(rectangle.getiCol1(), rectangle.getiCol2(), rectangle.getiCol3()));
-			g2.fillRect(0-rectangle.getiWidth()/2, 0-rectangle.getiHeight()/2, rectangle.getiWidth(), rectangle.getiHeight());
+			g2.fillRect(0 - rectangle.getiWidth() / 2, 0 - rectangle.getiHeight() / 2, rectangle.getiWidth(),
+					rectangle.getiHeight());
 			g2.dispose();
 			g2 = (Graphics2D) g;
-			g2.translate(-(rectangle.getiX()+rectangle.getiWidth()/2), -(rectangle.getiY()+rectangle.getiHeight()/2));
-
+			g2.translate(-(rectangle.getiX() + rectangle.getiWidth() / 2),
+					-(rectangle.getiY() + rectangle.getiHeight() / 2));
 
 		}
 		for (Sprite sprite : sprites) {
-
-			g2.translate(sprite.getiX()+sprite.getiWidth()/2, sprite.getiY()+sprite.getiHeight()/2);
-			g2 = (Graphics2D) g.create();
-			g2.rotate(sprite.getdRotate());
-			g2.drawImage(sprite.getImg() ,null , 0-sprite.getiWidth()/2, 0-sprite.getiHeight()/2);
-			g2.dispose();
-			g2 = (Graphics2D) g;
-			g2.translate(-(sprite.getiX()+sprite.getiWidth()/2), -(sprite.getiY()+sprite.getiHeight()/2));
-
-
+			if (sprite.isbDraw()) {
+				g2.translate(sprite.getiX() + sprite.getiWidth() / 2, sprite.getiY() + sprite.getiHeight() / 2);
+				g2 = (Graphics2D) g.create();
+				g2.rotate(sprite.getdRotate());
+				g2.drawImage(sprite.getImg(), null, 0 - sprite.getiWidth() / 2, 0 - sprite.getiHeight() / 2);
+				g2.dispose();
+				g2 = (Graphics2D) g;
+				g2.translate(-(sprite.getiX() + sprite.getiWidth() / 2), -(sprite.getiY() + sprite.getiHeight() / 2));
+			}
 		}
 
 		for (Text text : texte) {
-
-			g2.translate(text.getiX(), text.getiY());
-			g2 = (Graphics2D) g.create();
-			g2.rotate(text.getdRotate());
-			g2.setFont(text.getFoFont());
-			g2.setColor(Color.BLACK);
-			g2.drawString(text.getsText(), 0, 0);
-			g2.dispose();
-			g2 = (Graphics2D) g;
-			g2.translate(-text.getiX(), -text.getiY());
+			if (text.isbDraw()) {
+				g2.translate(text.getiX(), text.getiY());
+				g2 = (Graphics2D) g.create();
+				g2.rotate(text.getdRotate());
+				g2.setFont(text.getFoFont());
+				g2.setColor(Color.BLACK);
+				g2.drawString(text.getsText(), 0, 0);
+				g2.dispose();
+				g2 = (Graphics2D) g;
+				g2.translate(-text.getiX(), -text.getiY());
+			}
 		}
 		for (Oval oval : ovale) {
-
-			g2.translate(oval.getiX()+oval.getiWidth()/2, oval.getiY()+oval.getiHeight()/2);
-			g2 = (Graphics2D) g.create();
-			g2.rotate(oval.getdRotate());
-			g2.setColor(new Color(oval.getiCol1(), oval.getiCol2(), oval.getiCol3()));
-			g2.fillOval(0-oval.getiWidth()/2, 0-oval.getiHeight()/2, oval.getiWidth(), oval.getiHeight());
-			g2.dispose();
-			g2 = (Graphics2D) g;
-			g2.translate(-(oval.getiX()+oval.getiWidth()/2), -(oval.getiY()+oval.getiHeight()/2));
-
+			if (oval.isbDraw()) {
+				g2.translate(oval.getiX() + oval.getiWidth() / 2, oval.getiY() + oval.getiHeight() / 2);
+				g2 = (Graphics2D) g.create();
+				g2.rotate(oval.getdRotate());
+				g2.setColor(new Color(oval.getiCol1(), oval.getiCol2(), oval.getiCol3()));
+				g2.fillOval(0 - oval.getiWidth() / 2, 0 - oval.getiHeight() / 2, oval.getiWidth(), oval.getiHeight());
+				g2.dispose();
+				g2 = (Graphics2D) g;
+				g2.translate(-(oval.getiX() + oval.getiWidth() / 2), -(oval.getiY() + oval.getiHeight() / 2));
+			}
 
 		}
 
 	}
 
-	public int addRect(int x, int y, int width, int height, Color col) {
+	public int addRect(int x, int y, int width, int height, Color col, String sName) {
 		rects.add(new Rechteck(x, y, width, height, col));
+		ObjektListe.lObjekte.add(new Objekte(rects.size() - 1, sName));
 		return rects.size() - 1;
 	}
-	public int addSprite(int iX, int iY, BufferedImage img) {
+
+	public int addSprite(int iX, int iY, BufferedImage img, String sName) {
 		sprites.add(new Sprite(iX, iY, img));
+		ObjektListe.lObjekte.add(new Objekte(sprites.size() - 1, sName));
 		return sprites.size() - 1;
 	}
 
-	public int addOval(int x, int y, int width, int height, Color col) {
+	public int addOval(int x, int y, int width, int height, Color col, String sName) {
 		ovale.add(new Oval(x, y, width, height, col));
+		ObjektListe.lObjekte.add(new Objekte(ovale.size() - 1, sName));
 		return ovale.size() - 1;
 	}
 
-	public int addText(String sText, int iX, int iY) {
+	public int addText(String sText, int iX, int iY, String sName) {
 		texte.add(new Text(sText, iX, iY));
+		ObjektListe.lObjekte.add(new Objekte(texte.size() - 1, sName));
 		return texte.size() - 1;
 	}
 
-	public int addText(String sText, int iX, int iY, int iScale) {
+	public int addText(String sText, int iX, int iY, int iScale, String sName) {
 		texte.add(new Text(sText, iX, iY, iScale));
+		ObjektListe.lObjekte.add(new Objekte(texte.size() - 1, sName));
 		return texte.size() - 1;
 	}
 
-	public int addText(String sText, int iX, int iY, Font foFont) {
+	public int addText(String sText, int iX, int iY, Font foFont, String sName) {
 		texte.add(new Text(sText, iX, iY, foFont));
+		ObjektListe.lObjekte.add(new Objekte(texte.size() - 1, sName));
 		return texte.size() - 1;
 	}
 
@@ -138,6 +148,5 @@ public class Window extends JPanel {
 	public List<Sprite> getSprites() {
 		return sprites;
 	}
-	
 
 }

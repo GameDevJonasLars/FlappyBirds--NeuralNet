@@ -12,6 +12,7 @@ public class Oval {
 	private int iCol2;
 	private int iCol3;
 	private double dRotate;
+	private boolean bDraw;
 
 	public Oval(int iX, int iY, int iWidth, int iHeight, int iCol1, int iCol2, int iCol3) {
 		this.iX = iX;
@@ -21,7 +22,8 @@ public class Oval {
 		this.iCol1 = iCol1;
 		this.iCol2 = iCol2;
 		this.iCol3 = iCol3;
-		dRotate=0;
+		dRotate = 0;
+		bDraw = true;
 	}
 
 	public Oval(int iX, int iY, int iWidth, int iHeight, Color col) {
@@ -33,6 +35,7 @@ public class Oval {
 		this.iCol2 = col.getGreen();
 		this.iCol3 = col.getBlue();
 		dRotate = 0;
+		bDraw = true;
 	}
 
 	public int getiX() {
@@ -104,5 +107,13 @@ public class Oval {
 		this.dRotate = Math.toRadians(iDegree);
 		System.out.println(dRotate);
 	}
-	
+
+	public boolean isbDraw() {
+		return bDraw;
+	}
+
+	public void setbDraw(boolean bDraw) {
+		this.bDraw = bDraw;
+	}
+
 }

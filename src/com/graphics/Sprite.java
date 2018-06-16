@@ -14,6 +14,7 @@ public class Sprite {
 	private int iCol3;
 	private double dRotate;
 	private BufferedImage img;
+	private boolean bDraw;
 
 	public Sprite(int iX, int iY, BufferedImage img) {
 		this.iX = iX;
@@ -22,9 +23,8 @@ public class Sprite {
 		iHeight = img.getHeight();
 		this.img = img;
 		dRotate = 0;
+		bDraw = true;
 	}
-
-
 
 	public int getiX() {
 		return iX;
@@ -57,28 +57,34 @@ public class Sprite {
 	public void setiHeight(int iHeight) {
 		this.iHeight = iHeight;
 	}
+
 	public void mov(int iX, int iY) {
 		this.iX += iX;
 		this.iY += iY;
 	}
-	
+
 	public BufferedImage getImg() {
 		return img;
 	}
 
-
-
 	public void setImg(BufferedImage img) {
 		this.img = img;
 	}
-
-
 
 	public double getdRotate() {
 		return dRotate;
 	}
 
 	public void setdRotate(int iDegree) {
-		this.dRotate = Math.PI*2/360*iDegree;
+		this.dRotate = Math.PI * 2 / 360 * iDegree;
 	}
+
+	public boolean isbDraw() {
+		return bDraw;
+	}
+
+	public void setbDraw(boolean bDraw) {
+		this.bDraw = bDraw;
+	}
+
 }

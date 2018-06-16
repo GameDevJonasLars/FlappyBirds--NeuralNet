@@ -9,6 +9,7 @@ public class Text {
 	private int iScale;
 	private Font foFont;
 	private double dRotate;
+	private boolean bDraw;
 
 	public Text(String sText, int iX, int iY, int iScale) {
 		this.sText = sText;
@@ -16,6 +17,7 @@ public class Text {
 		this.iY = iY;
 		foFont = new Font("SansSerif", Font.PLAIN, iScale);
 		dRotate = 0;
+		bDraw = true;
 	}
 
 	public Text(String sText, int iX, int iY) {
@@ -24,6 +26,7 @@ public class Text {
 		this.iY = iY;
 		foFont = new Font("SansSerif", Font.PLAIN, 36);
 		dRotate = 0;
+		bDraw = true;
 	}
 
 	public Text(String sText, int iX, int iY, Font foFont) {
@@ -32,6 +35,7 @@ public class Text {
 		this.iY = iY;
 		this.foFont = foFont;
 		dRotate = 0;
+		bDraw = true;
 	}
 
 	public String getsText() {
@@ -65,12 +69,21 @@ public class Text {
 	public void setFoFont(Font foFont) {
 		this.foFont = foFont;
 	}
+
 	public double getdRotate() {
 		return Math.toDegrees(dRotate);
 	}
 
 	public void setdRotate(int iDegree) {
 		this.dRotate = Math.toRadians(iDegree);
+	}
+
+	public boolean isbDraw() {
+		return bDraw;
+	}
+
+	public void setbDraw(boolean bDraw) {
+		this.bDraw = bDraw;
 	}
 
 }

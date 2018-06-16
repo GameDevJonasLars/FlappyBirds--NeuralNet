@@ -15,6 +15,7 @@ import com.game.Bird;
 import com.game.MainGame;
 import com.game.Punkte;
 import com.game.RohrBlockade;
+import com.game.RohrController;
 import com.tools.Time;
 
 public class Engine extends Thread {
@@ -24,7 +25,7 @@ public class Engine extends Thread {
 	private MouseListenerWin maus;
 	private boolean bWasPressed; 
 	private Bird jonas;
-	private RohrBlockade rohr;
+	private RohrController rohrController;
 	private int iTextPunkte;
 	private int iTextHighscore;
 	private int iBoden;
@@ -36,7 +37,7 @@ public class Engine extends Thread {
 		this.window = window;
 		maus = new MouseListenerWin();
 		jonas = new Bird(window);
-		rohr = new RohrBlockade(window);
+		rohrController = new RohrController(window);
 	}
 
 	public void stopEngine() {
@@ -50,14 +51,17 @@ public class Engine extends Thread {
 	
 	public void update() {
 		jonas.update();
-		rohr.update();
-		rohr.collision();
+		rohrController.update();
 		jonas.collision();
 		window.getTexte().get(iTextPunkte).setsText("Punkte: "+Punkte.iPunkte);
 		if (Punkte.iPunkte > Punkte.iHighscore) {
 			Punkte.iHighscore = Punkte.iPunkte;
 		}
 		window.getTexte().get(iTextHighscore).setsText("Highscore: "+Punkte.iHighscore);
+	}
+	
+	public void getNames() {
+		jonas.getNames();
 	}
 	
 	public void input() {
@@ -76,11 +80,10 @@ public class Engine extends Thread {
 
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
-		iBoden = window.addRect(0, MainGame.HEIGHT-200, MainGame.WIDTH*2, 200, Color.GREEN);
-		iTextPunkte = window.addText("Punkte: 0", 800, 50);
-		iTextHighscore = window.addText("Highscore: 0", 800, 80);
+		iBoden = window.addRect(0, MainGame.HEIGHT-200, MainGame.WIDTH*2, 200, Color.GREEN, "Boden");
+		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte");
+		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore");
 		jonas.init();
-		rohr.init();
 		Punkte.iPunkte = 0;
 		Punkte.iHighscore = 0;
 	}
@@ -91,6 +94,7 @@ public class Engine extends Thread {
 		long lZeitFrame = Time.getTime();
 		int iFrames = 0;
 		initGraph();
+		getNames();
 		while (isRunning) {
 			long lTime = Time.getTime();
 			if (lTime - lZeit > (1000000000 / FPS_CAP)) {
