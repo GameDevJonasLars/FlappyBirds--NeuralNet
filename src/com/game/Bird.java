@@ -1,13 +1,17 @@
 package com.game;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import com.engine.Window;
 
 public class Bird {
 	private Window window;
 	private int iBody;
-	private int iEye1;
+	private int iPunkte;
 	private float fMov;
 	public Bird(Window window) {
 		this.window = window;
@@ -15,17 +19,42 @@ public class Bird {
 	}
 	public void update() {
 		fMov += 0.5f;
-		window.getOvale().get(iBody).mov(0, (int)fMov);
-		window.getOvale().get(iEye1).mov(0, (int)fMov);
+		window.getSprites().get(iBody).mov(0, (int)fMov);
+		if (fMov > 0) {
+			window.getSprites().get(iBody).setdRotate(10);
+		}
+		else if (fMov < 0) {
+			window.getSprites().get(iBody).setdRotate(350);
+		}
+		else if (fMov == 0) {
+			window.getSprites().get(iBody).setdRotate(0);
+		}
+		iPunkte++;
 	}
 	public void render() {
 		
 	}
+	
+	public void collision() {
+		if (window.getSprites().get(iBody).getiY()>700-window.getSprites().get(iBody).getiHeight()/2) {
+			window.getSprites().get(iBody).setiY(100);
+			fMov = 0;
+			iPunkte = 0;
+		}
+	}
 	public void init() {
-		iBody = window.addOval(100, 400, 70, 50, Color.green);
-		iEye1 = window.addOval(150, 410, 20, 20, Color.white);
+		try {
+			iBody = window.addSprite(200, 100, ImageIO.read(new File("res/DisabledBird.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void flap() {
 		fMov = -15;
 	}
+	public int getiPunkte() {
+		return iPunkte;
+	}
+	
 }

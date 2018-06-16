@@ -5,6 +5,11 @@ import java.awt.Font;
 import java.awt.MouseInfo;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import com.game.Bird;
 import com.game.MainGame;
@@ -38,6 +43,8 @@ public class Engine extends Thread {
 	
 	public void update() {
 		jonas.update();
+		jonas.collision();
+		window.getTexte().get(0).setsText("Punkte: "+jonas.getiPunkte());
 	}
 	
 	public void input() {
@@ -56,8 +63,8 @@ public class Engine extends Thread {
 
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
-		window.addOval(100, 100, 50, 50, Color.BLACK);
-		window.addText("Hallo", 0, 50, 100);
+		window.addRect(0, MainGame.HEIGHT-100, MainGame.WIDTH*2, 200, Color.GREEN);
+		window.addText("Punkte: 0", 100, 100);
 		jonas.init();
 	}
 

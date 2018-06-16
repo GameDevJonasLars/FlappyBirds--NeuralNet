@@ -11,6 +11,7 @@ public class Rechteck {
 	private int iCol1;
 	private int iCol2;
 	private int iCol3;
+	private double dRotate;
 
 	public Rechteck(int iX, int iY, int iWidth, int iHeight, int iCol1, int iCol2, int iCol3) {
 		this.iX = iX;
@@ -20,6 +21,7 @@ public class Rechteck {
 		this.iCol1 = iCol1;
 		this.iCol2 = iCol2;
 		this.iCol3 = iCol3;
+		dRotate = 0;
 	}
 
 	public Rechteck(int iX, int iY, int iWidth, int iHeight, Color col) {
@@ -30,6 +32,7 @@ public class Rechteck {
 		this.iCol1 = col.getRed();
 		this.iCol2 = col.getGreen();
 		this.iCol3 = col.getBlue();
+		dRotate = 0;
 	}
 
 	public int getiX() {
@@ -90,5 +93,12 @@ public class Rechteck {
 	public void mov(int iX, int iY) {
 		this.iX += iX;
 		this.iY += iY;
+	}
+	public double getdRotate() {
+		return Math.toDegrees(dRotate);
+	}
+
+	public void setdRotate(int iDegree) {
+		this.dRotate = Math.toRadians(iDegree);
 	}
 }
