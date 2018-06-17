@@ -3,7 +3,9 @@ package com.training;
 import java.util.ArrayList;
 
 import com.ai.Population;
+import com.engine.Window;
 import com.game.Bird;
+import com.game.EngineFlappyBird;
 import com.game.MainGame;
 
 public class TrainingController extends Thread {
@@ -11,11 +13,16 @@ public class TrainingController extends Thread {
 	private Population pop;
 	private boolean bRunTraining;
 	private int iGeneration = 1;
+	Window window;
+	EngineFlappyBird eng;
 
-	public TrainingController(int iPopulationSize, int iInputNum, int iOutputNum) {
-		
+	public TrainingController(Window window, int iPopulationSize, int iInputNum, int iOutputNum) {
+		this.window = window;
+		System.out.println("HALLO");
+		eng = new EngineFlappyBird(window);
+		System.out.println("HALLO");
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
-		
+		System.out.println("HALLO");
 	}
 	
 	public int getiGeneration() {
@@ -28,7 +35,7 @@ public class TrainingController extends Thread {
 	
 	public void run() {
 		
-		com.game.MainGame.eng.startGame(pop.size());
+		eng.startGame(pop.size());
 		
 		while (bRunTraining) {
 			
@@ -37,25 +44,25 @@ public class TrainingController extends Thread {
 				for (int i = 0; i <= (pop.size()-1) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
-					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandBoden());
-					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandRöhreHorizontal());
-					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandRöhreVertikal());
+					dInput.add((double) eng.birds.get(i).getiAbstandBoden());
+					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
+					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
 					
 					pop.giveTask(dInput, i);
 					
-					if(!MainGame.eng.birds.get(i).isbAlive()) {
-						pop.setFitness(i, MainGame.eng.birds.get(i).getiPunkte());
+					if(!eng.birds.get(i).isbAlive()) {
+						pop.setFitness(i, eng.birds.get(i).getiPunkte());
 					}
 					else if (pop.getResults(i).get(0) > 0.5) {
 						
-						MainGame.eng.birds.get(i).flap();
+						eng.birds.get(i).flap();
 						
 					}
 				}
 				
 				int temp = 0;
 				
-				for (Bird birds : MainGame.eng.birds) {
+				for (Bird birds : eng.birds) {
 					if (birds.isbAlive()) {
 						temp ++;
 					}
@@ -69,7 +76,7 @@ public class TrainingController extends Thread {
 		
 			}
 			
-			MainGame.eng.restartGame();
+			eng.restartGame();
 			
 		}
 	}
