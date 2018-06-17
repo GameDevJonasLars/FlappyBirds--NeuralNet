@@ -196,17 +196,11 @@ public class Population {
 		return nNetworkCopy;
 	}
 	
-<<<<<<< HEAD
 	public void selection(float surviveRate) {
 
 		int survivingNum = (int) (nPopulation.size() * surviveRate);
 		System.out.println(survivingNum);
-=======
-	public void selection() {
-
-		int survivingNum = (int) (nPopulation.size() * 0.25);
 		
->>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
 		while (nPopulation != null) {
 		
 			if (nPopulation.size() > survivingNum) {
@@ -223,11 +217,8 @@ public class Population {
 	
 	public void evolve(int iNewPopulationSize) {
 
-<<<<<<< HEAD
 		selection(0.25f);
-=======
-		selection();
->>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
+
 		
 		for(int i = 0; i < nPopulation.size(); i++) {
 			addMutated(i, 1);

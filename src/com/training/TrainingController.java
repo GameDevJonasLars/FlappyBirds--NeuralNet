@@ -23,7 +23,7 @@ public class TrainingController extends Thread {
 		bRunTraining = true;
 
 	}
-	
+
 	public int getiGeneration() {
 		return iGeneration;
 	}
@@ -31,64 +31,55 @@ public class TrainingController extends Thread {
 	public void stopTraining() {
 		this.bRunTraining = false;
 	}
-	
+
 	public void run() {
-		
+
 		eng.startGame(pop.size());
-		
+
 		while (bRunTraining) {
-			
-			while(true) {
-<<<<<<< HEAD
-				
-				for (int i = 0; i < (pop.size()) ; i++) {
-=======
-				System.out.println("HALLO");
-				for (int i = 0; i <= (pop.size()-1) ; i++) {
->>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
-					
+
+			while (true) {
+
+				for (int i = 0; i < (pop.size()); i++) {
+
 					ArrayList<Double> dInput = new ArrayList<Double>();
-					//dInput.add((double) eng.birds.get(i).getiAbstandBoden());
+					// dInput.add((double) eng.birds.get(i).getiAbstandBoden());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
-					
+
 					pop.giveTask(dInput, i);
-					
-					if(!eng.birds.get(i).isbAlive()) {
-<<<<<<< HEAD
-						pop.setFitness(i, eng.birds.get(i).getiPunkte()-eng.birds.get(i).getiAbstandRöhreVertikal());
-=======
+
+					if (!eng.birds.get(i).isbAlive()) {
+
 						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
->>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
-					}
-					else if (pop.getResults(i).get(0) > 0.5f) {
-						
+
+						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
+
+					} else if (pop.getResults(i).get(0) > 0.5f) {
+
 						eng.birds.get(i).flap();
-						
+
 					}
 				}
-				
+
 				int temp = 0;
-				
+
 				for (Bird birds : eng.birds) {
 					if (birds.isbAlive()) {
-						temp ++;
+						temp++;
 					}
 				}
-				
+
 				if (temp == 10) {
 					pop.evolve(10);
-					iGeneration ++;
+					iGeneration++;
 					break;
 				}
-		
+
 			}
-<<<<<<< HEAD
-=======
-			
->>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
+
 			eng.restartGame();
-			
+
 		}
 	}
 }
