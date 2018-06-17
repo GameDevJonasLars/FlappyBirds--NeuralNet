@@ -15,6 +15,8 @@ public class TrainingController extends Thread {
 	private Population pop;
 	private boolean bRunTraining;
 	private int iGeneration = 1;
+	private int iGenerationText;
+	private int iLebenText;
 	Window window;
 	EngineFlappyBird eng;
 
@@ -24,6 +26,7 @@ public class TrainingController extends Thread {
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
 		bRunTraining = true;
 
+		
 	}
 
 	public int getiGeneration() {
@@ -35,18 +38,31 @@ public class TrainingController extends Thread {
 	}
 
 	public void run() {
-
 		eng.startGame(pop.size());
-
+		eng.setbUpdate(false);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		eng.setbUpdate(true);
+		eng.restartGame();
+		
+		for (Objekte objekte : ObjektListe.lObjekte) {
+			if ("TextGeneration".equals(objekte.getsName())) {
+				iGenerationText = objekte.getiIndex();
+			}
+			if ("Vögel".equals(objekte.getsName())) {
+				iLebenText = objekte.getiIndex();
+			}
+		}
 		while (bRunTraining) {
 			eng.setbUpdate(true);
 
 			while (true) {
 
-			boolean bRoundRunning = true;
-			
-
-
+				boolean bRoundRunning = true;
 
 				for (int i = 0; i < (pop.size()); i++) {
 
@@ -72,37 +88,29 @@ public class TrainingController extends Thread {
 				for (Bird birds : eng.birds) {
 					if (!birds.isbAlive()) {
 						temp++;
-						for (Objekte objekte : ObjektListe.lObjekte) {
-							if ("Vögel".equals(objekte.getsName())) {
-								window.getTexte().get(objekte.getiIndex()).setsText("Lebende Vögel: "+(eng.birds.size()-temp)+"/"+eng.birds.size());
-								break;
-							}
-						}
+
+						window.getTexte().get(iLebenText)
+								.setsText("Lebende Vögel: " + (eng.birds.size() - temp) + "/" + eng.birds.size());
+
 					}
 				}
 
 				if (temp == eng.birds.size()) {
 
-				
+					if (temp == pop.size()) {
+						eng.setbUpdate(false);
+						pop.evolve(eng.birds.size());
+						iGeneration++;
 
-				if (temp == pop.size()) {
-					eng.setbUpdate(false);
-					pop.evolve(eng.birds.size());
-					iGeneration++;
-					for (Objekte objekte : ObjektListe.lObjekte) {
-						if ("TextGeneration".equals(objekte.getsName())) {
-							window.getTexte().get(objekte.getiIndex()).setsText("Generation: "+iGeneration);
-							break;
-						}
+						window.getTexte().get(iGenerationText).setsText("Generation: " + iGeneration);
+
+						bRoundRunning = false;
+						break;
 					}
-					bRoundRunning = false;
-					break;
-				}
 
-			}
+				}
 			}
 			eng.restartGame();
-			
 
 		}
 	}
