@@ -102,7 +102,6 @@ public class Engine extends Thread {
 			
 			if (lTime - lZeit > (1000000000 / FPS_CAP)) {
 				Time.lDelta = lTime - lZeit;
-				System.out.println(Time.getDelta());
 				iFrames++;
 				lZeit = lTime;
 				input();

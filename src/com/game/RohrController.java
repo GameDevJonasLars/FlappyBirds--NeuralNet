@@ -17,7 +17,8 @@ public class RohrController {
 	private int iBoden;
 	private double dAdd;
 	private double d‹ber;
-	private int iVerschieben;
+	private float fVerschieben;
+	private int iVal;
 
 	public RohrController(Window window) {
 		rohre = new ArrayList<RohrBlockade>();
@@ -25,7 +26,8 @@ public class RohrController {
 		fTime = 0;
 		dAdd = 0;
 		d‹ber = 0;
-		iVerschieben = 0;
+		fVerschieben = 3;
+		iVal = 0;
 		try {
 			iBoden = window.addSprite(0, MainGame.HEIGHT - 200, ImageIO.read(ResourceLoader.load("FlappyBirdBoden.PNG")), "Boden");
 		} catch (IOException e) {
@@ -34,11 +36,13 @@ public class RohrController {
 		}
 	}
 	public void update() {
+		System.out.println(fVerschieben);
 		if (Time.getDelta() < 1 || Time.getDelta() == 1) {
+			//fVerschieben += 0.0005;
 			dAdd += Time.getDelta();
 			if (dAdd > 1) {
-				iVerschieben += 3;
-				window.getSprites().get(iBoden).setiX(-iVerschieben);
+				iVal += (int)fVerschieben;
+				window.getSprites().get(iBoden).setiX(-iVal);
 			}
 			
 
@@ -46,20 +50,21 @@ public class RohrController {
 		if (Time.getDelta() > 1) {
 			d‹ber += Time.getDelta();
 			for (int i = 0; d‹ber > 1; i++) {
-				iVerschieben += 3;
-				window.getSprites().get(iBoden).setiX(-iVerschieben);
+				//fVerschieben += 0.0005;
+				iVal += (int)fVerschieben;
+				window.getSprites().get(iBoden).setiX(-iVal);
 				d‹ber--;
 			}
 		}
 		if (window.getSprites().get(iBoden).getiX() < -95) {
 			window.getSprites().get(iBoden).setiX(0);
-			iVerschieben = 0;
+			iVal = 0;
 		}
 		fTime += Time.getDelta();
 		if (rohre.size() == 0) {
 			neueRoehre();
 		}
-		if (fTime > 300) {
+		if (fTime > 200-(int)fVerschieben*20) {
 			neueRoehre();
 			fTime = 0;
 		}
@@ -83,4 +88,11 @@ public class RohrController {
 		fTime = 0;
 		rohre = new ArrayList<RohrBlockade>();
 	}
+	public float getfVerschieben() {
+		return fVerschieben;
+	}
+	public void setfVerschieben(float fVerschieben) {
+		this.fVerschieben = fVerschieben;
+	}
+	
 }

@@ -15,7 +15,6 @@ public class RohrBlockade {
 	private Window window;
 	private int iRöhreOben;
 	private int iRöhreUnten;
-	private int iVerschieben;
 	private int iBird;
 	private int iBoden;
 	private double dAdd;
@@ -24,7 +23,6 @@ public class RohrBlockade {
 
 	public RohrBlockade(Window window) {
 		this.window = window;
-		iVerschieben = 3;
 		dAdd = 0;
 		rohrController = null;
 		bPassed = false;
@@ -32,12 +30,11 @@ public class RohrBlockade {
 
 	public RohrBlockade(Window window, RohrController rohrController) {
 		this.window = window;
-		iVerschieben = 3;
 		this.rohrController = rohrController;
 	}
 
 	public void update() {
-		dAdd += iVerschieben * Time.getDelta();
+		dAdd += (int)rohrController.getfVerschieben() * Time.getDelta();
 		if (dAdd > 1) {
 			window.getSprites().get(iRöhreOben).mov(-(int)dAdd, 0);
 			window.getSprites().get(iRöhreUnten).mov(-(int)dAdd, 0);
@@ -72,6 +69,7 @@ public class RohrBlockade {
 								window.getSprites().get(iBoden).getiHeight()))) {
 			if (rohrController != null) {
 				rohrController.resetList();
+				rohrController.setfVerschieben(3);
 			}
 		}
 		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
@@ -82,10 +80,12 @@ public class RohrBlockade {
 								window.getSprites().get(iRöhreOben).getiHeight()))) {
 			if (rohrController != null) {
 				rohrController.resetList();
+				rohrController.setfVerschieben(3);
 			}
 			Punkte.setiPunkte(0);
 			Punkte.setiPunkteRöhre(0);
 			window.getSprites().get(iBird).setiY(100);
+			
 
 		}
 		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
@@ -96,6 +96,7 @@ public class RohrBlockade {
 								window.getSprites().get(iRöhreUnten).getiHeight()))) {
 			if (rohrController != null) {
 				rohrController.resetList();
+				rohrController.setfVerschieben(3);
 			}
 			Punkte.setiPunkte(0);
 			Punkte.setiPunkteRöhre(0);
