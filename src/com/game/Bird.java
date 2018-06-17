@@ -234,7 +234,6 @@ public class Bird {
 		return bAlive;
 	}
 
-<<<<<<< HEAD
 	public void setbAlive(boolean bAlive) {
 		this.bAlive = bAlive;
 	}
@@ -247,7 +246,6 @@ public class Bird {
 		this.fWinkel = fWinkel;
 	}
 	
-=======
 	public int getiAbstandBoden() {
 		return iAbstandBoden;
 	}
@@ -263,6 +261,5 @@ public class Bird {
 	public int getiPunkte() {
 		return iPunkte;
 	}
->>>>>>> 48b403e5fef10aaa3b80e62a989855070d3ded5b
 
 }
