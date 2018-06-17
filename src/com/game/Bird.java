@@ -225,7 +225,7 @@ public class Bird {
 	}
 
 	public void flap() {
-		fMov = -10f;
+		fMov = -10f+iIndex;
 		iTimeout = 40;
 	}
 
