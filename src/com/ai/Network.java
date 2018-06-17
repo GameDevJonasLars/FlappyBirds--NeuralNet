@@ -8,7 +8,7 @@ public class Network {
 	static private int iLayerNum;
 	protected ArrayList<Layer> lNetwork = new ArrayList<Layer>();
 	private ArrayList<Double> dResults = new ArrayList<Double>();
-	private double fitness;
+	private int iFitness;
 	private ArrayList<Integer> iStructure = new ArrayList<Integer>();
 
 	public Network(ArrayList<Integer> iStructure) {
@@ -81,12 +81,12 @@ public class Network {
 		
 	}
 	
-	public double getFitness() {
-		return fitness;
+	public Integer getFitness() {
+		return iFitness;
 	}
 
-	public void setFitness(double fitness) {
-		this.fitness = fitness;
+	public void setFitness(int iFitness) {
+		this.iFitness = iFitness;
 	}
 
 	public ArrayList<Double> getdResults() {

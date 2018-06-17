@@ -100,8 +100,8 @@ public class Population {
 		return nPopulation.size();
 	}
 	
-	public void setFitness(int iNetworkNum, double dFitness) {
-		nPopulation.get(iNetworkNum).setFitness(dFitness);
+	public void setFitness(int iNetworkNum, int iFitness) {
+		nPopulation.get(iNetworkNum).setFitness(iFitness);
 	}
 	
 	public double getFitness (int iNetworkNum) {
@@ -109,9 +109,9 @@ public class Population {
 		return dfitness;
 	}
 	
-	public ArrayList<Double> getFitnessOfAll () {
+	public ArrayList<Integer> getFitnessOfAll () {
 		
-		ArrayList<Double> dFitnessOfAll = new ArrayList<Double>();
+		ArrayList<Integer> dFitnessOfAll = new ArrayList<Integer>();
 		
 		for (int i = 0; i < nPopulation.size(); i++) {
 			dFitnessOfAll.add(nPopulation.get(i).getFitness());
@@ -203,7 +203,8 @@ public class Population {
 		while (nPopulation != null) {
 		
 			if (nPopulation.size() > survivingNum) {
-				nPopulation.remove(ArrayListTools.indexOfMinD(getFitnessOfAll()));
+				System.out.println(getFitnessOfAll());
+				nPopulation.remove(ArrayListTools.indexOfMinI(getFitnessOfAll()));
 			} else {
 				break;
 			}
