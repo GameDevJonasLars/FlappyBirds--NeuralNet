@@ -198,7 +198,7 @@ public class Population {
 	
 	public void selection(float surviveRate) {
 
-		int survivingNum = (int) (nPopulation.size() * surviveRate);
+		int survivingNum = (int) (9 * surviveRate);
 		System.out.println(survivingNum);
 		
 		while (nPopulation != null) {
@@ -219,12 +219,12 @@ public class Population {
 
 		selection(0.25f);
 
-		
-		for(int i = 0; i < nPopulation.size(); i++) {
+
+		for(int i = 0; i < iNewPopulationSize * 0.25f; i++) {
 			addMutated(i, 1);
 		}
 		
-		while (nPopulation.size() <= iNewPopulationSize) {
+		while (nPopulation.size() < iNewPopulationSize) {
 			addRandomNetwork();
 		}
 		

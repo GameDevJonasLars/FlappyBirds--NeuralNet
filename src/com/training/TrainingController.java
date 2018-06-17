@@ -39,7 +39,7 @@ public class TrainingController extends Thread {
 		while (bRunTraining) {
 
 			while (true) {
-
+				System.out.println("POP:"+pop.size());
 				for (int i = 0; i < (pop.size()); i++) {
 
 					ArrayList<Double> dInput = new ArrayList<Double>();
@@ -62,21 +62,20 @@ public class TrainingController extends Thread {
 				int temp = 0;
 
 				for (Bird birds : eng.birds) {
-					if (birds.isbAlive()) {
+					if (!birds.isbAlive()) {
 						temp++;
 					}
 				}
-
-				if (temp == 9) {
-					System.out.println("hhh");
-					pop.evolve(10);
+				System.out.println(temp);
+				if (temp == eng.birds.size()) {
+					pop.evolve(eng.birds.size());
 					iGeneration++;
 					break;
 				}
 
 			}
-
 			eng.restartGame();
+			
 
 		}
 	}
