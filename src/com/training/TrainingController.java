@@ -50,7 +50,7 @@ public class TrainingController extends Thread {
 					pop.giveTask(dInput, i);
 					
 					if(!eng.birds.get(i).isbAlive()) {
-						pop.setFitness(i, eng.birds.get(i).getiPunkte());
+						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
 					}
 					else if (pop.getResults(i).get(0) > 0.5f) {
 						
