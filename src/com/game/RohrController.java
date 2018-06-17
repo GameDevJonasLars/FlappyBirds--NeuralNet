@@ -11,7 +11,7 @@ import com.tools.ResourceLoader;
 import com.tools.Time;
 
 public class RohrController {
-	private List<RohrBlockade> rohre;
+	public static List<RohrBlockade> rohre;
 	private Window window;
 	private float fTime;
 	private int iBoden;
@@ -36,7 +36,6 @@ public class RohrController {
 		}
 	}
 	public void update() {
-		System.out.println(fVerschieben);
 		if (Time.getDelta() < 1 || Time.getDelta() == 1) {
 			//fVerschieben += 0.0005;
 			dAdd += Time.getDelta();
@@ -70,7 +69,6 @@ public class RohrController {
 		}
 		for (RohrBlockade rohrBlockade : rohre) {
 			rohrBlockade.update();
-			rohrBlockade.collision();
 		}
 	}
 

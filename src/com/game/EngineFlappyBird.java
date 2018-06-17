@@ -22,10 +22,11 @@ public class EngineFlappyBird extends Engine {
 
 	@Override
 	public void update() {
+		rohrController.update();
 		for (Bird bird : birds) {
 			bird.update();
 		}
-		rohrController.update();
+		
 		for (Bird bird : birds) {
 			bird.collision();
 		}

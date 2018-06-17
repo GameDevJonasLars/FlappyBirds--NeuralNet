@@ -26,6 +26,11 @@ public class Bird {
 	private boolean bFlügel;
 	private boolean bAlive;
 	private int iIndex;
+	private int iAbstandBoden;
+	private int iAbstandRöhreHorizontal;
+	private int iAbstandRöhreVertikal;
+	private int iPunkte;
+	private int iPunkteRöhre;
 
 	public Bird(Window window, int iIndex) {
 		this.window = window;
@@ -38,6 +43,9 @@ public class Bird {
 		bFlügel = true;
 		this.iIndex = iIndex;
 		bAlive = true;
+		iAbstandBoden = 0;
+		iAbstandRöhreHorizontal = 0;
+		iAbstandRöhreVertikal = 0;
 	}
 
 	public void update() {
@@ -80,13 +88,16 @@ public class Bird {
 						bFlügel = !bFlügel;
 						iTimeFlügel = 15;
 					}
+					iPunkte = Punkte.getiPunkte();
+					iPunkteRöhre = Punkte.getiPunkteRöhre();
+					iAbstandBoden = window.getSprites().get(iBoden).getiY()-window.getSprites().get(iBody).getiY()- window.getSprites().get(iBody).getiHeight();
+					iAbstandRöhreHorizontal = window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX() - window.getSprites().get(iBody).getiX()- window.getSprites().get(iBody).getiWidth();
 				}
-
-			}
-			else {
+				
+			} else {
 				window.getSprites().get(iBody).mov(-3, 0);
 			}
-		} 
+		}
 		if (Time.getDelta() > 1) {
 			if (bAlive) {
 				dÜber += Time.getDelta();
@@ -125,6 +136,12 @@ public class Bird {
 						bFlügel = !bFlügel;
 						iTimeFlügel = 15;
 					}
+					iPunkte = Punkte.getiPunkte();
+					iPunkteRöhre = Punkte.getiPunkteRöhre();
+					iAbstandBoden = window.getSprites().get(iBoden).getiY()-window.getSprites().get(iBody).getiY()- window.getSprites().get(iBody).getiHeight();
+					iAbstandRöhreHorizontal = window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX() - window.getSprites().get(iBody).getiX()- window.getSprites().get(iBody).getiWidth();
+					System.out.println(iAbstandRöhreHorizontal);
+
 				}
 			} else {
 				window.getSprites().get(iBody).mov(-3, 0);
@@ -156,6 +173,31 @@ public class Bird {
 			fMov = 0;
 			Punkte.setiPunkte(0);
 			Punkte.setiPunkteRöhre(0);
+		}
+		for (RohrBlockade block : RohrController.rohre) {
+
+			if (new Rectangle(window.getSprites().get(iBody).getiX(), window.getSprites().get(iBody).getiY(),
+					window.getSprites().get(iBody).getiWidth(), window.getSprites().get(iBody).getiHeight())
+							.intersects(new Rectangle(window.getSprites().get(block.getiRöhreOben()).getiX(),
+									window.getSprites().get(block.getiRöhreOben()).getiY(),
+									window.getSprites().get(block.getiRöhreOben()).getiWidth(),
+									window.getSprites().get(block.getiRöhreOben()).getiHeight()))) {
+				bAlive = false;
+				fMov = 0;
+				Punkte.setiPunkte(0);
+				Punkte.setiPunkteRöhre(0);
+			}
+			if (new Rectangle(window.getSprites().get(iBody).getiX(), window.getSprites().get(iBody).getiY(),
+					window.getSprites().get(iBody).getiWidth(), window.getSprites().get(iBody).getiHeight())
+							.intersects(new Rectangle(window.getSprites().get(block.getiRöhreUnten()).getiX(),
+									window.getSprites().get(block.getiRöhreUnten()).getiY(),
+									window.getSprites().get(block.getiRöhreUnten()).getiWidth(),
+									window.getSprites().get(block.getiRöhreUnten()).getiHeight()))) {
+				bAlive = false;
+				fMov = 0;
+				Punkte.setiPunkte(0);
+				Punkte.setiPunkteRöhre(0);
+			}
 		}
 	}
 

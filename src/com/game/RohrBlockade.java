@@ -34,18 +34,18 @@ public class RohrBlockade {
 	}
 
 	public void update() {
-		dAdd += (int)rohrController.getfVerschieben() * Time.getDelta();
+		dAdd += (int) rohrController.getfVerschieben() * Time.getDelta();
 		if (dAdd > 1) {
-			window.getSprites().get(iRöhreOben).mov(-(int)dAdd, 0);
-			window.getSprites().get(iRöhreUnten).mov(-(int)dAdd, 0);
-			dAdd -=(int)dAdd;
+			window.getSprites().get(iRöhreOben).mov(-(int) dAdd, 0);
+			window.getSprites().get(iRöhreUnten).mov(-(int) dAdd, 0);
+			dAdd -= (int) dAdd;
 		}
-		if (!bPassed && window.getSprites().get(iBird).getiX()> window.getSprites().get(iRöhreOben).getiX()) {
+		if (!bPassed && window.getSprites().get(iBird).getiX() > window.getSprites().get(iRöhreOben).getiX()) {
 			bPassed = true;
-			Punkte.setiPunkteRöhre(Punkte.getiPunkteRöhre()+1);
-			if (Punkte.getiPunkteRöhre()>Punkte.getiHighscoreRöhre()) {
+			Punkte.setiPunkteRöhre(Punkte.getiPunkteRöhre() + 1);
+			if (Punkte.getiPunkteRöhre() > Punkte.getiHighscoreRöhre()) {
 				Punkte.setiHighscoreRöhre(Punkte.getiPunkteRöhre());
-				
+
 			}
 		}
 	}
@@ -58,49 +58,6 @@ public class RohrBlockade {
 			if ("Boden".equals(objekte.getsName())) {
 				iBoden = objekte.getiIndex();
 			}
-		}
-	}
-
-	public void collision() {
-		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
-				window.getSprites().get(iBird).getiWidth(), window.getSprites().get(iBird).getiHeight())
-						.intersects(new Rectangle(window.getSprites().get(iBoden).getiX(),
-								window.getSprites().get(iBoden).getiY(), window.getSprites().get(iBoden).getiWidth(),
-								window.getSprites().get(iBoden).getiHeight()))) {
-			if (rohrController != null) {
-				//rohrController.resetList();
-				//rohrController.setfVerschieben(3);
-			}
-		}
-		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
-				window.getSprites().get(iBird).getiWidth(), window.getSprites().get(iBird).getiHeight())
-						.intersects(new Rectangle(window.getSprites().get(iRöhreOben).getiX(),
-								window.getSprites().get(iRöhreOben).getiY(),
-								window.getSprites().get(iRöhreOben).getiWidth(),
-								window.getSprites().get(iRöhreOben).getiHeight()))) {
-			if (rohrController != null) {
-				//rohrController.resetList();
-				//rohrController.setfVerschieben(3);
-			}
-			//Punkte.setiPunkte(0);
-			//Punkte.setiPunkteRöhre(0);
-			//window.getSprites().get(iBird).setiY(100);
-			
-
-		}
-		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
-				window.getSprites().get(iBird).getiWidth(), window.getSprites().get(iBird).getiHeight())
-						.intersects(new Rectangle(window.getSprites().get(iRöhreUnten).getiX(),
-								window.getSprites().get(iRöhreUnten).getiY(),
-								window.getSprites().get(iRöhreUnten).getiWidth(),
-								window.getSprites().get(iRöhreUnten).getiHeight()))) {
-			if (rohrController != null) {
-				//rohrController.resetList();
-				//rohrController.setfVerschieben(3);
-			}
-			//Punkte.setiPunkte(0);
-			//Punkte.setiPunkteRöhre(0);
-			//window.getSprites().get(iBird).setiY(100);
 		}
 	}
 
