@@ -26,7 +26,7 @@ public class EngineFlappyBird extends Engine {
 		for (Bird bird : birds) {
 			bird.update();
 		}
-		
+
 		for (Bird bird : birds) {
 			bird.collision();
 		}
@@ -85,7 +85,19 @@ public class EngineFlappyBird extends Engine {
 	public void restartGame() {
 		rohrController.resetList();
 		for (Bird bird : birds) {
-			window.getSprites().get(bird.getiIndex()).setiY(MainGame.HEIGHT / 2);
+			int n = 0;
+			for (Objekte obj : ObjektListe.lObjekte) {
+				if (obj.getsName().equals("Body" + bird.getiIndex())) {
+					n = obj.getiIndex();
+					break;
+				}
+			}
+			window.getSprites().get(n).setiY(MainGame.HEIGHT / 2 - 200);
+			window.getSprites().get(n).setiX(300);
+			bird.setbAlive(true);
+			bird.setfWinkel(0);
+			Punkte.setiPunkte(0);
+			Punkte.setiPunkteRöhre(0);
 		}
 	}
 

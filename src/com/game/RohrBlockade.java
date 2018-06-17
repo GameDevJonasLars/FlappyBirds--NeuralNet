@@ -15,7 +15,6 @@ public class RohrBlockade {
 	private Window window;
 	private int iRöhreOben;
 	private int iRöhreUnten;
-	private int iBird;
 	private int iBoden;
 	private double dAdd;
 	private RohrController rohrController;
@@ -40,7 +39,7 @@ public class RohrBlockade {
 			window.getSprites().get(iRöhreUnten).mov(-(int) dAdd, 0);
 			dAdd -= (int) dAdd;
 		}
-		if (!bPassed && window.getSprites().get(iBird).getiX() > window.getSprites().get(iRöhreOben).getiX()) {
+		if (!bPassed && 230 > window.getSprites().get(iRöhreOben).getiX()) {
 			bPassed = true;
 			Punkte.setiPunkteRöhre(Punkte.getiPunkteRöhre() + 1);
 			if (Punkte.getiPunkteRöhre() > Punkte.getiHighscoreRöhre()) {
@@ -52,9 +51,7 @@ public class RohrBlockade {
 
 	public void getNames() {
 		for (Objekte objekte : ObjektListe.lObjekte) {
-			if ("Body0".equals(objekte.getsName())) {
-				iBird = objekte.getiIndex();
-			}
+
 			if ("Boden".equals(objekte.getsName())) {
 				iBoden = objekte.getiIndex();
 			}

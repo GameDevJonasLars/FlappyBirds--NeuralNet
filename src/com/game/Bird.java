@@ -184,8 +184,7 @@ public class Bird {
 								window.getSprites().get(iBoden).getiHeight()))) {
 			bAlive = false;
 			fMov = 0;
-			Punkte.setiPunkte(0);
-			Punkte.setiPunkteRöhre(0);
+
 		}
 		for (RohrBlockade block : RohrController.rohre) {
 
@@ -197,8 +196,7 @@ public class Bird {
 									window.getSprites().get(block.getiRöhreOben()).getiHeight()))) {
 				bAlive = false;
 				fMov = 0;
-				Punkte.setiPunkte(0);
-				Punkte.setiPunkteRöhre(0);
+
 			}
 			if (new Rectangle(window.getSprites().get(iBody).getiX(), window.getSprites().get(iBody).getiY(),
 					window.getSprites().get(iBody).getiWidth(), window.getSprites().get(iBody).getiHeight())
@@ -208,15 +206,14 @@ public class Bird {
 									window.getSprites().get(block.getiRöhreUnten()).getiHeight()))) {
 				bAlive = false;
 				fMov = 0;
-				Punkte.setiPunkte(0);
-				Punkte.setiPunkteRöhre(0);
+
 			}
 		}
 	}
 
 	public void init() {
 		try {
-			iBody = window.addSprite(MainGame.HEIGHT / 2, 100, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")),
+			iBody = window.addSprite(300, MainGame.HEIGHT/2-200, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")),
 					"Body" + iIndex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -225,7 +222,7 @@ public class Bird {
 	}
 
 	public void flap() {
-		fMov = -10f+iIndex;
+		fMov = -10f;
 		iTimeout = 40;
 	}
 
@@ -236,5 +233,18 @@ public class Bird {
 	public boolean isbAlive() {
 		return bAlive;
 	}
+
+	public void setbAlive(boolean bAlive) {
+		this.bAlive = bAlive;
+	}
+
+	public float getfWinkel() {
+		return fWinkel;
+	}
+
+	public void setfWinkel(float fWinkel) {
+		this.fWinkel = fWinkel;
+	}
+	
 
 }
