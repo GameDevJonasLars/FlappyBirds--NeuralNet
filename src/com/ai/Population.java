@@ -213,8 +213,18 @@ public class Population {
 
 	}
 	
-	public void evolve() {
+	public void evolve(int iNewPopulationSize) {
 
+		selection(25);
+		
+		for(int i = 0; i < nPopulation.size(); i++) {
+			addMutated(i, 1);
+		}
+		
+		while (nPopulation.size() <= iNewPopulationSize) {
+			addRandomNetwork();
+		}
+		
 	}
 
 	public void save() {
