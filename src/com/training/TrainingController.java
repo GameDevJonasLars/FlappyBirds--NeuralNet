@@ -40,17 +40,17 @@ public class TrainingController extends Thread {
 			
 			while(true) {
 				
-				for (int i = 0; i <= (pop.size()-1) ; i++) {
+				for (int i = 0; i < (pop.size()) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
-					dInput.add((double) eng.birds.get(i).getiAbstandBoden());
+					//dInput.add((double) eng.birds.get(i).getiAbstandBoden());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
 					
 					pop.giveTask(dInput, i);
 					
 					if(!eng.birds.get(i).isbAlive()) {
-						pop.setFitness(i, eng.birds.get(i).getiPunkte());
+						pop.setFitness(i, eng.birds.get(i).getiPunkte()-eng.birds.get(i).getiAbstandRöhreVertikal());
 					}
 					else if (pop.getResults(i).get(0) > 0.5f) {
 						
@@ -74,7 +74,6 @@ public class TrainingController extends Thread {
 				}
 		
 			}
-			MainGame.frame.setTitle(MainGame.TITLE +"GENERATION: "+iGeneration);
 			eng.restartGame();
 			
 		}
