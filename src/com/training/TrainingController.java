@@ -43,7 +43,7 @@ public class TrainingController extends Thread {
 				for (int i = 0; i <= (pop.size()-1) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
-					dInput.add((double) eng.birds.get(i).getiAbstandBoden());
+					//dInput.add((double) eng.birds.get(i).getiAbstandBoden());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
 					
