@@ -4,20 +4,26 @@ import java.util.ArrayList;
 
 import com.ai.Population;
 import com.game.Bird;
-import com.game.EngineFlappyBird;
 import com.game.MainGame;
 
 public class TrainingController extends Thread {
 
-	Population pop;
-	boolean bRunTraining;
-	boolean bRoundRunning;
-	int iGeneration = 1;
-	
+	private Population pop;
+	private boolean bRunTraining;
+	private int iGeneration = 1;
+
 	public TrainingController(int iPopulationSize, int iInputNum, int iOutputNum) {
 		
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
 		
+	}
+	
+	public int getiGeneration() {
+		return iGeneration;
+	}
+
+	public void stopTraining() {
+		this.bRunTraining = false;
 	}
 	
 	public void run() {
@@ -31,9 +37,9 @@ public class TrainingController extends Thread {
 				for (int i = 0; i <= (pop.size()-1) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
-					//dInput.add(MainGame.eng.birds.get(i).);
-					//dInput.add(MainGame.eng.birds.get(i).);
-					//dInput.add(MainGame.eng.birds.get(i).);
+					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandBoden());
+					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandRöhreHorizontal());
+					dInput.add((double) MainGame.eng.birds.get(i).getiAbstandRöhreVertikal());
 					
 					pop.giveTask(dInput, i);
 					
@@ -46,6 +52,7 @@ public class TrainingController extends Thread {
 						
 					}
 				}
+				
 				int temp = 0;
 				
 				for (Bird birds : MainGame.eng.birds) {
