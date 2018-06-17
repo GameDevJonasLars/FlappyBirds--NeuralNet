@@ -35,6 +35,16 @@ public class EngineFlappyBird extends Engine {
 			Punkte.setiHighscore(Punkte.getiPunkte());
 		}
 		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscoreRöhre());
+		boolean bReset = true;
+		for (Bird bird : birds) {
+			if (bird.isbAlive()) {
+				bReset = false;
+				break;
+			}
+		}
+		if (bReset) {
+			restartGame();
+		}
 	}
 
 	@Override
