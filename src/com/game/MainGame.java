@@ -31,7 +31,7 @@ public class MainGame {
 		}
 
 
-		TrainingController train = new TrainingController(window, 9, 2, 1);
+		TrainingController train = new TrainingController(window, 9, 1, 1);
 		train.start();
 		//EngineFlappyBird eng = new EngineFlappyBird(window);
 		//eng.startGame(1);

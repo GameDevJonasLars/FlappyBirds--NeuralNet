@@ -83,7 +83,7 @@ public abstract class Engine extends Thread {
 				Time.lDelta = lTime - lZeit;
 				iFrames++;
 				lZeit = lTime;
-				input();
+				//input();
 				if (bUpdate) {
 					update();
 				}
