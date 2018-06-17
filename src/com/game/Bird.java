@@ -154,7 +154,6 @@ public class Bird {
 							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiY() - 100)
 							- (window.getSprites().get(iBody).getiY()
 									+ window.getSprites().get(iBody).getiHeight() / 2);
-					System.out.println(iAbstandRöhreVertikal);
 
 				}
 			} else {
