@@ -58,8 +58,8 @@ public class EngineFlappyBird extends Engine {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte");
-		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore");
+		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte",1);
+		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore",1);
 		for (Bird bird : birds) {
 			bird.init();
 		}

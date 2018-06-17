@@ -11,13 +11,13 @@ import com.engine.Engine;
 import com.engine.Frame;
 import com.engine.Window;
 import com.tools.ResourceLoader;
+import com.training.TrainingController;
 
 public class MainGame {
 	public static int WIDTH = 1600;
 	public static int HEIGHT = 900;
 	public static String TITLE = "Flappy Birds";
 	public static Frame frame;
-	public static EngineFlappyBird eng;
 
 	public static void main(String[] args) {
 		Window window = new Window();
@@ -30,9 +30,9 @@ public class MainGame {
 			e.printStackTrace();
 		}
 
-		eng = new EngineFlappyBird(window);
-		eng.startGame(1);
-
+		TrainingController train = new TrainingController(window, 10, 3, 1);
+		train.start();
+		
 
 
 		
