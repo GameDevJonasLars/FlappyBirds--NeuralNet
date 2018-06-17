@@ -75,6 +75,7 @@ public class TrainingController extends Thread {
 						for (Objekte objekte : ObjektListe.lObjekte) {
 							if ("Vögel".equals(objekte.getsName())) {
 								window.getTexte().get(objekte.getiIndex()).setsText("Lebende Vögel: "+(eng.birds.size()-temp)+"/"+eng.birds.size());
+								break;
 							}
 						}
 					}
@@ -91,6 +92,7 @@ public class TrainingController extends Thread {
 					for (Objekte objekte : ObjektListe.lObjekte) {
 						if ("TextGeneration".equals(objekte.getsName())) {
 							window.getTexte().get(objekte.getiIndex()).setsText("Generation: "+iGeneration);
+							break;
 						}
 					}
 					bRoundRunning = false;
