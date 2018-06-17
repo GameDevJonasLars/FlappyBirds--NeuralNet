@@ -1,17 +1,22 @@
 package com.training;
 
 import com.ai.Population;
+import com.game.EngineFlappyBird;
 
-public abstract class TrainingController extends Thread {
+public class TrainingController extends Thread {
 
-	
+	Population pop;
 	
 	public TrainingController(int iPopulationSize, int iInputNum, int iOutputNum) {
 		
-		Population pop = new Population(iPopulationSize, iInputNum, iOutputNum);
+		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
 		
 	}
 	
-	abstract public void run();
+	public void run() {
+		
+		com.game.MainGame.eng.start();
+		
+	}
 
 }

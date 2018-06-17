@@ -17,6 +17,7 @@ public class MainGame {
 	public static int HEIGHT = 900;
 	public static String TITLE = "Flappy Birds";
 	public static Frame frame;
+	public static EngineFlappyBird eng;
 
 	public static void main(String[] args) {
 		Window window = new Window();
@@ -28,8 +29,12 @@ public class MainGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		EngineFlappyBird eng = new EngineFlappyBird(window);
 		eng.startGame(1);
+=======
+		eng = new EngineFlappyBird(window);
+>>>>>>> e502cfdd888a893530f8c4bd7bed36c241d60d08
 		
 	}
 }
