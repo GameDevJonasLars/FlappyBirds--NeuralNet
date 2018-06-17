@@ -53,7 +53,7 @@ public abstract class Engine extends Thread {
 
 	public abstract void update();
 
-	public abstract void initGraph();
+	public abstract void init();
 
 	public abstract void getNames();
 
@@ -64,7 +64,7 @@ public abstract class Engine extends Thread {
 		long lZeit = Time.getTime();
 		long lZeitFrame = Time.getTime();
 		int iFrames = 0;
-		initGraph();
+		init();
 		getNames();
 		while (isRunning) {
 			long lTime = Time.getTime();

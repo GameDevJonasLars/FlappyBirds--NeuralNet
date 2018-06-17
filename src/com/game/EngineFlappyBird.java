@@ -29,7 +29,7 @@ public class EngineFlappyBird extends Engine {
 	}
 
 	@Override
-	public void initGraph() {
+	public void init() {
 		window.setBackground(Color.CYAN);
 		try {
 			window.addSprite(0,
