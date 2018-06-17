@@ -67,8 +67,8 @@ public class TrainingController extends Thread {
 					}
 				}
 				
-				if (temp == 10) {
-					pop.evolve(10);
+				if (temp == 8) {
+					pop.evolve(8);
 					iGeneration ++;
 					break;
 				}
