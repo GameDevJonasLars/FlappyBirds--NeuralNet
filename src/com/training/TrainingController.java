@@ -39,8 +39,13 @@ public class TrainingController extends Thread {
 		while (bRunTraining) {
 			
 			while(true) {
+<<<<<<< HEAD
 				
 				for (int i = 0; i < (pop.size()) ; i++) {
+=======
+				System.out.println("HALLO");
+				for (int i = 0; i <= (pop.size()-1) ; i++) {
+>>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
 					//dInput.add((double) eng.birds.get(i).getiAbstandBoden());
@@ -50,7 +55,11 @@ public class TrainingController extends Thread {
 					pop.giveTask(dInput, i);
 					
 					if(!eng.birds.get(i).isbAlive()) {
+<<<<<<< HEAD
 						pop.setFitness(i, eng.birds.get(i).getiPunkte()-eng.birds.get(i).getiAbstandRöhreVertikal());
+=======
+						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
+>>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
 					}
 					else if (pop.getResults(i).get(0) > 0.5f) {
 						
@@ -74,6 +83,10 @@ public class TrainingController extends Thread {
 				}
 		
 			}
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
 			eng.restartGame();
 			
 		}
