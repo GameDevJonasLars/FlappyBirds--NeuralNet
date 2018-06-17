@@ -31,10 +31,14 @@ public class MainGame {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		TrainingController train = new TrainingController(window, 9, 2, 1);
 =======
 		TrainingController train = new TrainingController(window, 5, 3, 1);
 >>>>>>> 587163ddd2505068ad003f02180e17cbcf7d26c2
+=======
+		TrainingController train = new TrainingController(window, 8, 2, 1);
+>>>>>>> 2c80f05adc3848b7e854fcc7feb754015da7dc7a
 		train.start();
 		//EngineFlappyBird eng = new EngineFlappyBird(window);
 		//eng.startGame(1);
