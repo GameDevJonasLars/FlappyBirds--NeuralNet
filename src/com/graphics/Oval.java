@@ -104,8 +104,7 @@ public class Oval {
 	}
 
 	public void setdRotate(int iDegree) {
-		this.dRotate = Math.toRadians(iDegree);
-		System.out.println(dRotate);
+		this.dRotate = Math.PI * 2 / 360 * iDegree;
 	}
 
 	public boolean isbDraw() {

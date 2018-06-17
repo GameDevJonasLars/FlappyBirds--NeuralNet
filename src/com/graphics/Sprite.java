@@ -76,7 +76,25 @@ public class Sprite {
 	}
 
 	public void setdRotate(int iDegree) {
-		this.dRotate = Math.PI * 2 / 360 * iDegree;
+		if (iDegree > 360) {
+			while (iDegree - 360 > 0) {
+				iDegree -= 360;
+			}
+		} else if (iDegree < -360) {
+			while (iDegree + 360 < 0) {
+				iDegree += 360;
+			}
+		}
+		if (iDegree == 0) {
+			this.dRotate = Math.PI * 2 / 360 * (iDegree);
+		}
+		else if (iDegree / Math.abs(iDegree) == -1) {
+			this.dRotate = Math.PI * 2 / 360 * (360 + iDegree);
+		}
+
+		else if (iDegree / Math.abs(iDegree) == 1) {
+			this.dRotate = Math.PI * 2 / 360 * (iDegree);
+		}
 	}
 
 	public boolean isbDraw() {

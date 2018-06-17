@@ -75,7 +75,7 @@ public class Text {
 	}
 
 	public void setdRotate(int iDegree) {
-		this.dRotate = Math.toRadians(iDegree);
+		this.dRotate = Math.PI * 2 / 360 * iDegree;
 	}
 
 	public boolean isbDraw() {

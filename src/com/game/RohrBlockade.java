@@ -20,12 +20,14 @@ public class RohrBlockade {
 	private int iBoden;
 	private double dAdd;
 	private RohrController rohrController;
+	private boolean bPassed;
 
 	public RohrBlockade(Window window) {
 		this.window = window;
 		iVerschieben = 3;
 		dAdd = 0;
 		rohrController = null;
+		bPassed = false;
 	}
 
 	public RohrBlockade(Window window, RohrController rohrController) {
@@ -40,6 +42,14 @@ public class RohrBlockade {
 			window.getSprites().get(iRöhreOben).mov(-(int)dAdd, 0);
 			window.getSprites().get(iRöhreUnten).mov(-(int)dAdd, 0);
 			dAdd -=(int)dAdd;
+		}
+		if (!bPassed && window.getSprites().get(iBird).getiX()> window.getSprites().get(iRöhreOben).getiX()) {
+			bPassed = true;
+			Punkte.setiPunkteRöhre(Punkte.getiPunkteRöhre()+1);
+			if (Punkte.getiPunkteRöhre()>Punkte.getiHighscoreRöhre()) {
+				Punkte.setiHighscoreRöhre(Punkte.getiPunkteRöhre());
+				
+			}
 		}
 	}
 
@@ -57,9 +67,9 @@ public class RohrBlockade {
 	public void collision() {
 		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
 				window.getSprites().get(iBird).getiWidth(), window.getSprites().get(iBird).getiHeight())
-						.intersects(new Rectangle(window.getRects().get(iBoden).getiX(),
-								window.getRects().get(iBoden).getiY(), window.getRects().get(iBoden).getiWidth(),
-								window.getRects().get(iBoden).getiHeight()))) {
+						.intersects(new Rectangle(window.getSprites().get(iBoden).getiX(),
+								window.getSprites().get(iBoden).getiY(), window.getSprites().get(iBoden).getiWidth(),
+								window.getSprites().get(iBoden).getiHeight()))) {
 			if (rohrController != null) {
 				rohrController.resetList();
 			}
@@ -74,7 +84,8 @@ public class RohrBlockade {
 				rohrController.resetList();
 			}
 			Punkte.setiPunkte(0);
-			window.getSprites().get(0).setiY(100);
+			Punkte.setiPunkteRöhre(0);
+			window.getSprites().get(iBird).setiY(100);
 
 		}
 		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
@@ -87,19 +98,20 @@ public class RohrBlockade {
 				rohrController.resetList();
 			}
 			Punkte.setiPunkte(0);
-			window.getSprites().get(0).setiY(100);
+			Punkte.setiPunkteRöhre(0);
+			window.getSprites().get(iBird).setiY(100);
 		}
 	}
 
 	public void init() {
 		try {
 			Random rd = new Random();
-			int iHeight = rd.nextInt(MainGame.HEIGHT - window.getRects().get(iBoden).getiHeight() - 200);
+			int iHeight = rd.nextInt(MainGame.HEIGHT - 400);
 			iRöhreOben = window.addSprite(MainGame.WIDTH,
-					iHeight - ImageIO.read(ResourceLoader.load("Röhre_Oben.png")).getHeight(),
-					ImageIO.read(ResourceLoader.load("Röhre_Oben.png")), "RöhreOben");
+					iHeight - ImageIO.read(ResourceLoader.load("FlappyBirdRöhreOben.PNG")).getHeight(),
+					ImageIO.read(ResourceLoader.load("FlappyBirdRöhreOben.PNG")), "RöhreOben");
 			iRöhreUnten = window.addSprite(MainGame.WIDTH, iHeight + 200,
-					ImageIO.read(ResourceLoader.load("Röhre_Unten.png")), "RöhreUnten");
+					ImageIO.read(ResourceLoader.load("FlappyBirdRöhreUnten.PNG")), "RöhreUnten");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -16,6 +16,7 @@ import com.game.MainGame;
 import com.game.Punkte;
 import com.game.RohrBlockade;
 import com.game.RohrController;
+import com.tools.ResourceLoader;
 import com.tools.Time;
 
 public class Engine extends Thread {
@@ -28,12 +29,15 @@ public class Engine extends Thread {
 	private RohrController rohrController;
 	private int iTextPunkte;
 	private int iTextHighscore;
-	private int iBoden;
 
 	public Engine(Window window) {
 		isRunning = true;
 		bWasPressed = false;
+<<<<<<< HEAD
 		FPS_CAP = 99999;
+=======
+		FPS_CAP = 60;
+>>>>>>> 9692228ed8b550168aaa04ddd53f31f74dc81c80
 		this.window = window;
 		maus = new MouseListenerWin();
 		jonas = new Bird(window);
@@ -53,11 +57,11 @@ public class Engine extends Thread {
 		jonas.update();
 		rohrController.update();
 		jonas.collision();
-		window.getTexte().get(iTextPunkte).setsText("Punkte: " + Punkte.getiPunkte());
+		window.getTexte().get(iTextPunkte).setsText("Punkte: " + Punkte.getiPunkteRöhre());
 		if (Punkte.getiPunkte() > Punkte.getiHighscore()) {
 			Punkte.setiHighscore(Punkte.getiPunkte());
 		}
-		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscore());
+		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscoreRöhre());
 	}
 
 	public void getNames() {
@@ -78,7 +82,11 @@ public class Engine extends Thread {
 
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
-		iBoden = window.addRect(0, MainGame.HEIGHT - 200, MainGame.WIDTH * 2, 200, Color.GREEN, "Boden");
+		try {
+			window.addSprite(0, -ImageIO.read(ResourceLoader.load("FlappyBirdHintergrund.PNG")).getHeight()+(MainGame.HEIGHT-200), ImageIO.read(ResourceLoader.load("FlappyBirdHintergrund.PNG")), "Hintergrund");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte");
 		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore");
 		jonas.init();

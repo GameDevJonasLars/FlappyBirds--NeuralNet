@@ -1,23 +1,60 @@
 package com.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import com.engine.Window;
+import com.tools.ResourceLoader;
 import com.tools.Time;
 
 public class RohrController {
 	private List<RohrBlockade> rohre;
 	private Window window;
 	private float fTime;
+	private int iBoden;
+	private double dAdd;
+	private double d‹ber;
+	private int iVerschieben;
 
 	public RohrController(Window window) {
 		rohre = new ArrayList<RohrBlockade>();
 		this.window = window;
 		fTime = 0;
+		dAdd = 0;
+		d‹ber = 0;
+		iVerschieben = 0;
+		try {
+			iBoden = window.addSprite(0, MainGame.HEIGHT - 200, ImageIO.read(ResourceLoader.load("FlappyBirdBoden.PNG")), "Boden");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
 	public void update() {
+		if (Time.getDelta() < 1 || Time.getDelta() == 1) {
+			dAdd += Time.getDelta();
+			if (dAdd > 1) {
+				iVerschieben += 3;
+				window.getSprites().get(iBoden).setiX(-iVerschieben);
+			}
+			
+
+		}
+		if (Time.getDelta() > 1) {
+			d‹ber += Time.getDelta();
+			for (int i = 0; d‹ber > 1; i++) {
+				iVerschieben += 3;
+				window.getSprites().get(iBoden).setiX(-iVerschieben);
+				d‹ber--;
+			}
+		}
+		if (window.getSprites().get(iBoden).getiX() < -95) {
+			window.getSprites().get(iBoden).setiX(0);
+			iVerschieben = 0;
+		}
 		fTime += Time.getDelta();
 		if (rohre.size() == 0) {
 			neueRoehre();

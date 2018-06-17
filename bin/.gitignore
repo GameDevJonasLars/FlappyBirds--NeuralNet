@@ -1,5 +1,16 @@
 /DisabledBird.png
 /bird.jpg
 /com/
+<<<<<<< HEAD
 /Röhre_Oben.png
 /Röhre_Unten.png
+=======
+/res/
+/FlappyBirdRöhreOben.PNG
+/FlappyBirdRöhreUnten.PNG
+/FlappyBirdOben.PNG
+/FlappyBirdUnten.PNG
+/FlappyBirdBoden.PNG
+/FlappyBirdHintergrund.PNG
+/images.jpg
+>>>>>>> 9692228ed8b550168aaa04ddd53f31f74dc81c80
