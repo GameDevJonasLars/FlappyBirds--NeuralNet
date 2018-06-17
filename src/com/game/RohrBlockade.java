@@ -39,7 +39,7 @@ public class RohrBlockade {
 			window.getSprites().get(iRöhreUnten).mov(-(int) dAdd, 0);
 			dAdd -= (int) dAdd;
 		}
-		if (!bPassed && 230 > window.getSprites().get(iRöhreOben).getiX()) {
+		if (!bPassed && 213 > window.getSprites().get(iRöhreOben).getiX()) {
 			bPassed = true;
 			Punkte.setiPunkteRöhre(Punkte.getiPunkteRöhre() + 1);
 			if (Punkte.getiPunkteRöhre() > Punkte.getiHighscoreRöhre()) {

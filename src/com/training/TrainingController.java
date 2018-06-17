@@ -7,6 +7,8 @@ import com.engine.Window;
 import com.game.Bird;
 import com.game.EngineFlappyBird;
 import com.game.MainGame;
+import com.game.ObjektListe;
+import com.game.Objekte;
 
 public class TrainingController extends Thread {
 
@@ -50,7 +52,7 @@ public class TrainingController extends Thread {
 
 					ArrayList<Double> dInput = new ArrayList<Double>();
 					// dInput.add((double) eng.birds.get(i).getiAbstandBoden());
-					//dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
+					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
 
 					pop.giveTask(dInput, i);
@@ -81,6 +83,11 @@ public class TrainingController extends Thread {
 					eng.setbUpdate(false);
 					pop.evolve(eng.birds.size());
 					iGeneration++;
+					for (Objekte objekte : ObjektListe.lObjekte) {
+						if ("TextGeneration".equals(objekte.getsName())) {
+							window.getTexte().get(objekte.getiIndex()).setsText("Generation: "+iGeneration);
+						}
+					}
 					bRoundRunning = false;
 					break;
 				}

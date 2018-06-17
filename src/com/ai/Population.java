@@ -46,10 +46,10 @@ public class Population {
 		ArrayList<Integer> iStructure = new ArrayList<Integer>();
 		iStructure.add(iInputNum);
 
-		int iLayerNum = (int) (Math.random() * (iInputNum * 10)) + 1;
+		int iLayerNum = (int) (Math.random() * (iInputNum * 2)) + 1;
 
 		for (int iZ = 0; iZ <= iLayerNum; iZ++) {
-			iStructure.add((int) (Math.random() * (iInputNum * 450)) + iInputNum * 3);
+			iStructure.add((int) (Math.random() * (iInputNum * 30)) + iInputNum * 3);
 		}
 		
 		iStructure.add(iOutputNum);
