@@ -69,7 +69,6 @@ public class TrainingController extends Thread {
 					}
 				}
 				
-				System.out.println(temp);
 
 				if (temp == pop.size()) {
 					pop.evolve(eng.birds.size());

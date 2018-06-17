@@ -225,7 +225,7 @@ public class Population {
 			addMutated(i, 1);
 		}
 		
-		while (nPopulation.size() <= iNewPopulationSize) {
+		while (nPopulation.size() < iNewPopulationSize) {
 			addRandomNetwork();
 		}
 	}
