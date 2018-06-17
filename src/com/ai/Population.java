@@ -227,7 +227,6 @@ public class Population {
 		
 		while (nPopulation.size() <= iNewPopulationSize) {
 			addRandomNetwork();
-			System.out.println("f");
 		}
 	}
 

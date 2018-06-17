@@ -72,7 +72,6 @@ public class TrainingController extends Thread {
 				System.out.println(temp);
 
 				if (temp == pop.size()) {
-					System.out.println("hhh");
 					pop.evolve(eng.birds.size());
 					iGeneration++;
 					bRoundRunning = false;
