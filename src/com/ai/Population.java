@@ -218,16 +218,11 @@ public class Population {
 	public void evolve(int iNewPopulationSize) {
 
 		selection(0.25f);
-<<<<<<< HEAD
-
-
-		for(int i = 0; i < iNewPopulationSize * 0.25f; i++) {
-=======
 		
 		int iOldSize = nPopulation.size();
 
 		for(int i = 0; i < iOldSize; i++) {
->>>>>>> 4ae25f670b2cafcbaf045588bfd5335f016734e7
+
 			addMutated(i, 1);
 		}
 		
