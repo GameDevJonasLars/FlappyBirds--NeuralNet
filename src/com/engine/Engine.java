@@ -33,7 +33,7 @@ public class Engine extends Thread {
 	public Engine(Window window) {
 		isRunning = true;
 		bWasPressed = false;
-		FPS_CAP = 50;
+		FPS_CAP = 99999;
 		this.window = window;
 		maus = new MouseListenerWin();
 		jonas = new Bird(window);
