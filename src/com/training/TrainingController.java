@@ -38,8 +38,15 @@ public class TrainingController extends Thread {
 
 		while (bRunTraining) {
 
+<<<<<<< HEAD
 			while (true) {
 				System.out.println("POP:"+pop.size());
+=======
+			boolean bRoundRunning = true;
+			
+			while (bRoundRunning ) {
+
+>>>>>>> 4ae25f670b2cafcbaf045588bfd5335f016734e7
 				for (int i = 0; i < (pop.size()); i++) {
 
 					ArrayList<Double> dInput = new ArrayList<Double>();
@@ -66,11 +73,17 @@ public class TrainingController extends Thread {
 						temp++;
 					}
 				}
+<<<<<<< HEAD
 				System.out.println(temp);
 				if (temp == eng.birds.size()) {
+=======
+				
+
+				if (temp == pop.size()) {
+>>>>>>> 4ae25f670b2cafcbaf045588bfd5335f016734e7
 					pop.evolve(eng.birds.size());
 					iGeneration++;
-					break;
+					bRoundRunning = false;
 				}
 
 			}
