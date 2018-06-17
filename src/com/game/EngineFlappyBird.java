@@ -2,6 +2,8 @@ package com.game;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -10,17 +12,23 @@ import com.engine.Window;
 import com.tools.ResourceLoader;
 
 public class EngineFlappyBird extends Engine {
-
+	public List<Bird> birds;
 	public EngineFlappyBird(Window window) {
 		super(window);
+		birds = new ArrayList<Bird>();
+		birds.add(new Bird(window, 0));
 		super.run();
 	}
 
 	@Override
 	public void update() {
-		jonas.update();
+		for (Bird bird : birds) {
+			bird.update();
+		}
 		rohrController.update();
-		jonas.collision();
+		for (Bird bird : birds) {
+			bird.collision();
+		}
 		window.getTexte().get(iTextPunkte).setsText("Punkte: " + Punkte.getiPunkteRöhre());
 		if (Punkte.getiPunkte() > Punkte.getiHighscore()) {
 			Punkte.setiHighscore(Punkte.getiPunkte());
@@ -41,7 +49,9 @@ public class EngineFlappyBird extends Engine {
 		}
 		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte");
 		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore");
-		jonas.init();
+		for (Bird bird : birds) {
+			bird.init();
+		}
 
 		Punkte.setiPunkte(0);
 		Punkte.setiHighscore(0);
@@ -50,7 +60,9 @@ public class EngineFlappyBird extends Engine {
 
 	@Override
 	public void getNames() {
-		jonas.getNames();
+		for (Bird bird : birds) {
+			bird.getNames();
+		}
 
 	}
 
@@ -58,7 +70,9 @@ public class EngineFlappyBird extends Engine {
 	public void input() {
 		if (maus.isbPressed() && !bWasPressed) {
 			bWasPressed = true;
-			jonas.flap();
+			for (Bird bird : birds) {
+				bird.flap();
+			}
 		}
 
 		if (!maus.isbPressed()) {
