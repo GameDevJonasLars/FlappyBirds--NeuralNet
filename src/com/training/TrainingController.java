@@ -33,7 +33,7 @@ public class TrainingController extends Thread {
 				
 				pop.giveTask(dInput, i);
 				
-				if(!MainGame.eng.birds.get(i).isAlive()) {
+				if(!MainGame.eng.birds.get(i).isbAlive()) {
 					pop.setFitness(i, MainGame.eng.birds.get(i).getiPunkte());
 				}
 				else if (pop.getResults(i).get(0) > 0.5) {
@@ -45,7 +45,7 @@ public class TrainingController extends Thread {
 			int temp = 0;
 			
 			for (Bird birds : MainGame.eng.birds) {
-				if (birds.isAlive()) {
+				if (birds.isbAlive()) {
 					temp ++;
 				}
 			}

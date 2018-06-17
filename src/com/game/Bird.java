@@ -237,4 +237,20 @@ public class Bird {
 		return bAlive;
 	}
 
+	public int getiAbstandBoden() {
+		return iAbstandBoden;
+	}
+
+	public int getiAbstandRöhreHorizontal() {
+		return iAbstandRöhreHorizontal;
+	}
+
+	public int getiAbstandRöhreVertikal() {
+		return iAbstandRöhreVertikal;
+	}
+
+	public int getiPunkte() {
+		return iPunkte;
+	}
+
 }
