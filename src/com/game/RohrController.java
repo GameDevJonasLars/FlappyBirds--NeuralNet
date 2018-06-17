@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.engine.Window;
+import com.tools.Time;
 
 public class RohrController {
 	private List<RohrBlockade> rohre;
 	private Window window;
-	private int iTime;
+	private float fTime;
 
 	public RohrController(Window window) {
 		rohre = new ArrayList<RohrBlockade>();
 		this.window = window;
-		iTime = 0;
+		fTime = 0;
 	}
 
 	public void update() {
-		iTime++;
+		fTime += Time.getDelta();
 		if (rohre.size() == 0) {
 			neueRoehre();
 		}
-		if (iTime > 300) {
+		if (fTime > 300) {
 			neueRoehre();
-			iTime = 0;
+			fTime = 0;
 		}
 		for (RohrBlockade rohrBlockade : rohre) {
 			rohrBlockade.update();
@@ -42,7 +43,7 @@ public class RohrController {
 			window.getSprites().get(rohrBlockade.getiRöhreOben()).setbDraw(false);
 			window.getSprites().get(rohrBlockade.getiRöhreUnten()).setbDraw(false);
 		}
-		iTime = 0;
+		fTime = 0;
 		rohre = new ArrayList<RohrBlockade>();
 	}
 }

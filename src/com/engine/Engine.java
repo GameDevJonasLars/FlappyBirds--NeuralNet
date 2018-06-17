@@ -23,7 +23,7 @@ public class Engine extends Thread {
 	private int FPS_CAP;
 	private Window window;
 	private MouseListenerWin maus;
-	private boolean bWasPressed; 
+	private boolean bWasPressed;
 	private Bird jonas;
 	private RohrController rohrController;
 	private int iTextPunkte;
@@ -45,34 +45,32 @@ public class Engine extends Thread {
 	}
 
 	public void render() {
-		
+
 		window.repaint();
 	}
-	
+
 	public void update() {
 		jonas.update();
 		rohrController.update();
 		jonas.collision();
-		window.getTexte().get(iTextPunkte).setsText("Punkte: "+Punkte.iPunkte);
-		if (Punkte.iPunkte > Punkte.iHighscore) {
-			Punkte.iHighscore = Punkte.iPunkte;
+		window.getTexte().get(iTextPunkte).setsText("Punkte: " + Punkte.getiPunkte());
+		if (Punkte.getiPunkte() > Punkte.getiHighscore()) {
+			Punkte.setiHighscore(Punkte.getiPunkte());
 		}
-		window.getTexte().get(iTextHighscore).setsText("Highscore: "+Punkte.iHighscore);
+		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscore());
 	}
-	
+
 	public void getNames() {
 		jonas.getNames();
 	}
-	
+
 	public void input() {
-		
-		if(maus.isbPressed() && !bWasPressed) {
+
+		if (maus.isbPressed() && !bWasPressed) {
 			bWasPressed = true;
 			jonas.flap();
 		}
-		
-		
-		
+
 		if (!maus.isbPressed()) {
 			bWasPressed = false;
 		}
@@ -80,12 +78,12 @@ public class Engine extends Thread {
 
 	public void initGraph() {
 		window.setBackground(Color.CYAN);
-		iBoden = window.addRect(0, MainGame.HEIGHT-200, MainGame.WIDTH*2, 200, Color.GREEN, "Boden");
+		iBoden = window.addRect(0, MainGame.HEIGHT - 200, MainGame.WIDTH * 2, 200, Color.GREEN, "Boden");
 		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte");
 		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore");
 		jonas.init();
-		Punkte.iPunkte = 0;
-		Punkte.iHighscore = 0;
+		Punkte.setiPunkte(0);
+		Punkte.setiHighscore(0);
 	}
 
 	public void run() {
@@ -97,7 +95,10 @@ public class Engine extends Thread {
 		getNames();
 		while (isRunning) {
 			long lTime = Time.getTime();
+			
 			if (lTime - lZeit > (1000000000 / FPS_CAP)) {
+				Time.lDelta = lTime - lZeit;
+				System.out.println(Time.getDelta());
 				iFrames++;
 				lZeit = lTime;
 				input();
