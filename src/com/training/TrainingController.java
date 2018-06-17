@@ -21,10 +21,7 @@ public class TrainingController extends Thread {
 		eng = new EngineFlappyBird(window);
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
 		bRunTraining = true;
-<<<<<<< HEAD
-		
-=======
->>>>>>> dab237c70786dab8b7e917e9e452baedd36a8a78
+
 	}
 	
 	public int getiGeneration() {
