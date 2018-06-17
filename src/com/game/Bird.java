@@ -99,6 +99,10 @@ public class Bird {
 							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiY() - 100)
 							- (window.getSprites().get(iBody).getiY()
 									+ window.getSprites().get(iBody).getiHeight() / 2);
+					if (window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiX() < 300 && window.getSprites().get(iBody).getiY()<0)  {
+						bAlive = false;
+						fMov = 0;
+					}
 				}
 
 			} else {
@@ -155,6 +159,10 @@ public class Bird {
 							- (window.getSprites().get(iBody).getiY()
 									+ window.getSprites().get(iBody).getiHeight() / 2);
 
+				}
+				if (window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiX() < 300 && window.getSprites().get(iBody).getiY()<0)  {
+					bAlive = false;
+					fMov = 0;
 				}
 			} else {
 				window.getSprites().get(iBody).mov(-3, 0);
@@ -213,8 +221,8 @@ public class Bird {
 
 	public void init() {
 		try {
-			iBody = window.addSprite(300, MainGame.HEIGHT/2-200, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")),
-					"Body" + iIndex);
+			iBody = window.addSprite(300, MainGame.HEIGHT / 2 - 200,
+					ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")), "Body" + iIndex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -245,7 +253,7 @@ public class Bird {
 	public void setfWinkel(float fWinkel) {
 		this.fWinkel = fWinkel;
 	}
-	
+
 	public int getiAbstandBoden() {
 		return iAbstandBoden;
 	}

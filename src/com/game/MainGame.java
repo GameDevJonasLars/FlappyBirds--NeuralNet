@@ -30,8 +30,10 @@ public class MainGame {
 			e.printStackTrace();
 		}
 
-		TrainingController train = new TrainingController(window, 10, 3, 1);
-		train.start();
+		//TrainingController train = new TrainingController(window, 5, 3, 1);
+		//train.start();
+		EngineFlappyBird eng = new EngineFlappyBird(window);
+		eng.startGame(1);
 		
 
 
