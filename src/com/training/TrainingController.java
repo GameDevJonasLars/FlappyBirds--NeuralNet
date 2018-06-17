@@ -39,7 +39,7 @@ public class TrainingController extends Thread {
 		while (bRunTraining) {
 			
 			while(true) {
-				
+				System.out.println("HALLO");
 				for (int i = 0; i <= (pop.size()-1) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
@@ -74,7 +74,7 @@ public class TrainingController extends Thread {
 				}
 		
 			}
-			MainGame.frame.setTitle(MainGame.TITLE +"GENERATION: "+iGeneration);
+			
 			eng.restartGame();
 			
 		}
