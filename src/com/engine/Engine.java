@@ -38,7 +38,7 @@ public class Engine extends Thread {
 		
 		this.window = window;
 		maus = new MouseListenerWin();
-		jonas = new Bird(window);
+		jonas = new Bird(window,0);
 		rohrController = new RohrController(window);
 	}
 

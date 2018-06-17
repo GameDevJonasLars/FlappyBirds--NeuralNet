@@ -24,8 +24,9 @@ public class Bird {
 	private int iTimeout;
 	private int iTimeFlügel;
 	private boolean bFlügel;
+	private int iIndex;
 
-	public Bird(Window window) {
+	public Bird(Window window, int iIndex) {
 		this.window = window;
 		fMov = 0;
 		dAdd = 0;
@@ -34,6 +35,7 @@ public class Bird {
 		iTimeout = 40;
 		iTimeFlügel = 15;
 		bFlügel = true;
+		this.iIndex = iIndex;
 	}
 
 	public void update() {
@@ -148,7 +150,7 @@ public class Bird {
 
 	public void init() {
 		try {
-			iBody = window.addSprite(200, 100, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")), "Body");
+			iBody = window.addSprite(200, 100, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")), "Body"+iIndex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

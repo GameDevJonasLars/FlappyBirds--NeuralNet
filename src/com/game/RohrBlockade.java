@@ -52,7 +52,7 @@ public class RohrBlockade {
 
 	public void getNames() {
 		for (Objekte objekte : ObjektListe.lObjekte) {
-			if ("Body".equals(objekte.getsName())) {
+			if ("Body0".equals(objekte.getsName())) {
 				iBird = objekte.getiIndex();
 			}
 			if ("Boden".equals(objekte.getsName())) {
