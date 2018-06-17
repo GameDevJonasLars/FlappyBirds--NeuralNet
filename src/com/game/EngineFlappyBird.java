@@ -13,11 +13,11 @@ import com.tools.ResourceLoader;
 
 public class EngineFlappyBird extends Engine {
 	public List<Bird> birds;
+
 	public EngineFlappyBird(Window window) {
 		super(window);
 		birds = new ArrayList<Bird>();
-		birds.add(new Bird(window, 0));
-		super.run();
+
 	}
 
 	@Override
@@ -79,6 +79,20 @@ public class EngineFlappyBird extends Engine {
 			bWasPressed = false;
 		}
 
+	}
+
+	public void restartGame() {
+		rohrController.resetList();
+		for (Bird bird : birds) {
+			window.getSprites().get(bird.getiIndex()).setiY(MainGame.HEIGHT / 2);
+		}
+	}
+
+	public void startGame(int iVögel) {
+		for (int i = 0; i < iVögel; i++) {
+			birds.add(new Bird(window, i));
+		}
+		super.startEngine();
 	}
 
 }

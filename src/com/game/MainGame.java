@@ -29,6 +29,7 @@ public class MainGame {
 			e.printStackTrace();
 		}
 		EngineFlappyBird eng = new EngineFlappyBird(window);
+		eng.startGame(1);
 		
 	}
 }

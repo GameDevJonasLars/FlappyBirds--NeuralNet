@@ -31,7 +31,7 @@ public abstract class Engine extends Thread {
 	protected int iTextHighscore;
 
 	public Engine(Window window) {
-		isRunning = true;
+		isRunning = false;
 		bWasPressed = false;
 
 		FPS_CAP = 60;
@@ -44,6 +44,10 @@ public abstract class Engine extends Thread {
 
 	public void stopEngine() {
 		isRunning = false;
+	}
+	public void startEngine() {
+		isRunning = true;
+		this.start();
 	}
 
 	public void render() {

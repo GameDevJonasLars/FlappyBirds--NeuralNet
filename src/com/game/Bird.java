@@ -24,6 +24,7 @@ public class Bird {
 	private int iTimeout;
 	private int iTimeFlügel;
 	private boolean bFlügel;
+	private boolean bAlive;
 	private int iIndex;
 
 	public Bird(Window window, int iIndex) {
@@ -36,90 +37,100 @@ public class Bird {
 		iTimeFlügel = 15;
 		bFlügel = true;
 		this.iIndex = iIndex;
+		bAlive = true;
 	}
 
 	public void update() {
-		
+
 		if (Time.getDelta() < 1 || Time.getDelta() == 1) {
-			dAdd += Time.getDelta();
-			if (dAdd > 1) {
-				iTimeout--;
-				iTimeFlügel--;
-				fMov += 0.5f;
-				window.getSprites().get(iBody).mov(0, (int) (fMov));
-				dAdd--;
-				if (fMov > 0 && fWinkel < 90 && iTimeout < 0) {
-					fWinkel += 4f;
-					window.getSprites().get(iBody).setdRotate((int) fWinkel);
-				} else if (fMov < 0 && fWinkel > -10) {
-					
-					fWinkel -= 5;
-					window.getSprites().get(iBody).setdRotate((int) (fWinkel));
-				}
-				if (iTimeFlügel<0) {
-					if (bFlügel) {
-						try {
-							window.getSprites().get(iBody).setImg(ImageIO.read(ResourceLoader.load("FlappyBirdOben.PNG")));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					else {
-						try {
-							window.getSprites().get(iBody).setImg(ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					bFlügel = !bFlügel;
-					iTimeFlügel = 15;
-				}
-			}
-			
+			if (bAlive) {
+				dAdd += Time.getDelta();
+				if (dAdd > 1) {
+					iTimeout--;
+					iTimeFlügel--;
+					fMov += 0.5f;
+					window.getSprites().get(iBody).mov(0, (int) (fMov));
+					dAdd--;
+					if (fMov > 0 && fWinkel < 90 && iTimeout < 0) {
+						fWinkel += 4f;
+						window.getSprites().get(iBody).setdRotate((int) fWinkel);
+					} else if (fMov < 0 && fWinkel > -10) {
 
-		}
+						fWinkel -= 5;
+						window.getSprites().get(iBody).setdRotate((int) (fWinkel));
+					}
+					if (iTimeFlügel < 0) {
+						if (bFlügel) {
+							try {
+								window.getSprites().get(iBody)
+										.setImg(ImageIO.read(ResourceLoader.load("FlappyBirdOben.PNG")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							try {
+								window.getSprites().get(iBody)
+										.setImg(ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+						bFlügel = !bFlügel;
+						iTimeFlügel = 15;
+					}
+				}
+
+			}
+			else {
+				window.getSprites().get(iBody).mov(-3, 0);
+			}
+		} 
 		if (Time.getDelta() > 1) {
-			dÜber += Time.getDelta();
-			for (int i = 0; dÜber > 1; i++) {
-				iTimeout--;
-				iTimeFlügel--;
-				fMov += 0.5f;
-				window.getSprites().get(iBody).mov(0, (int) (fMov));
-				dÜber--;
-				if (fMov > 0 && fWinkel < 90 && iTimeout < 0) {
-					fWinkel += 4f;
-					window.getSprites().get(iBody).setdRotate((int) fWinkel);
-				} else if (fMov < 0 && fWinkel > -10) {
-					
-					fWinkel -= 5;
-					window.getSprites().get(iBody).setdRotate((int) (fWinkel));
-				}
-				if (iTimeFlügel<0) {
-					if (bFlügel) {
-						try {
-							window.getSprites().get(iBody).setImg(ImageIO.read(ResourceLoader.load("FlappyBirdOben.PNG")));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+			if (bAlive) {
+				dÜber += Time.getDelta();
+				for (int i = 0; dÜber > 1; i++) {
+					iTimeout--;
+					iTimeFlügel--;
+					fMov += 0.5f;
+					window.getSprites().get(iBody).mov(0, (int) (fMov));
+					dÜber--;
+					if (fMov > 0 && fWinkel < 90 && iTimeout < 0) {
+						fWinkel += 4f;
+						window.getSprites().get(iBody).setdRotate((int) fWinkel);
+					} else if (fMov < 0 && fWinkel > -10) {
+
+						fWinkel -= 5;
+						window.getSprites().get(iBody).setdRotate((int) (fWinkel));
 					}
-					else {
-						try {
-							window.getSprites().get(iBody).setImg(ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")));
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					if (iTimeFlügel < 0) {
+						if (bFlügel) {
+							try {
+								window.getSprites().get(iBody)
+										.setImg(ImageIO.read(ResourceLoader.load("FlappyBirdOben.PNG")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						} else {
+							try {
+								window.getSprites().get(iBody)
+										.setImg(ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
+						bFlügel = !bFlügel;
+						iTimeFlügel = 15;
 					}
-					bFlügel = !bFlügel;
-					iTimeFlügel = 15;
 				}
+			} else {
+				window.getSprites().get(iBody).mov(-3, 0);
 			}
 		}
 
-		
 		Punkte.addPunkte(1);
 	}
 
@@ -141,7 +152,7 @@ public class Bird {
 						.intersects(new Rectangle(window.getSprites().get(iBoden).getiX(),
 								window.getSprites().get(iBoden).getiY(), window.getSprites().get(iBoden).getiWidth(),
 								window.getSprites().get(iBoden).getiHeight()))) {
-			window.getSprites().get(iBody).setiY(100);
+			bAlive = false;
 			fMov = 0;
 			Punkte.setiPunkte(0);
 			Punkte.setiPunkteRöhre(0);
@@ -150,7 +161,8 @@ public class Bird {
 
 	public void init() {
 		try {
-			iBody = window.addSprite(200, 100, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")), "Body"+iIndex);
+			iBody = window.addSprite(MainGame.HEIGHT / 2, 100, ImageIO.read(ResourceLoader.load("FlappyBirdUnten.PNG")),
+					"Body" + iIndex);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -160,6 +172,14 @@ public class Bird {
 	public void flap() {
 		fMov = -10f;
 		iTimeout = 40;
+	}
+
+	public int getiIndex() {
+		return iIndex;
+	}
+
+	public boolean isbAlive() {
+		return bAlive;
 	}
 
 }

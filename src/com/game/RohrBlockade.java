@@ -68,8 +68,8 @@ public class RohrBlockade {
 								window.getSprites().get(iBoden).getiY(), window.getSprites().get(iBoden).getiWidth(),
 								window.getSprites().get(iBoden).getiHeight()))) {
 			if (rohrController != null) {
-				rohrController.resetList();
-				rohrController.setfVerschieben(3);
+				//rohrController.resetList();
+				//rohrController.setfVerschieben(3);
 			}
 		}
 		if (new Rectangle(window.getSprites().get(iBird).getiX(), window.getSprites().get(iBird).getiY(),
@@ -79,12 +79,12 @@ public class RohrBlockade {
 								window.getSprites().get(iRöhreOben).getiWidth(),
 								window.getSprites().get(iRöhreOben).getiHeight()))) {
 			if (rohrController != null) {
-				rohrController.resetList();
-				rohrController.setfVerschieben(3);
+				//rohrController.resetList();
+				//rohrController.setfVerschieben(3);
 			}
-			Punkte.setiPunkte(0);
-			Punkte.setiPunkteRöhre(0);
-			window.getSprites().get(iBird).setiY(100);
+			//Punkte.setiPunkte(0);
+			//Punkte.setiPunkteRöhre(0);
+			//window.getSprites().get(iBird).setiY(100);
 			
 
 		}
@@ -95,12 +95,12 @@ public class RohrBlockade {
 								window.getSprites().get(iRöhreUnten).getiWidth(),
 								window.getSprites().get(iRöhreUnten).getiHeight()))) {
 			if (rohrController != null) {
-				rohrController.resetList();
-				rohrController.setfVerschieben(3);
+				//rohrController.resetList();
+				//rohrController.setfVerschieben(3);
 			}
-			Punkte.setiPunkte(0);
-			Punkte.setiPunkteRöhre(0);
-			window.getSprites().get(iBird).setiY(100);
+			//Punkte.setiPunkte(0);
+			//Punkte.setiPunkteRöhre(0);
+			//window.getSprites().get(iBird).setiY(100);
 		}
 	}
 
