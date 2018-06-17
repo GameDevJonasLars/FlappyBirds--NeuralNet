@@ -31,7 +31,7 @@ public class MainGame {
 		}
 
 		eng = new EngineFlappyBird(window);
-		eng.startGame(10);
+		eng.startGame(1);
 
 
 

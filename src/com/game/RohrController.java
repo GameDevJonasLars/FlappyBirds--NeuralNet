@@ -29,7 +29,7 @@ public class RohrController {
 		fVerschieben = 3;
 		iVal = 0;
 		try {
-			iBoden = window.addSprite(0, MainGame.HEIGHT - 200, ImageIO.read(ResourceLoader.load("FlappyBirdBoden.PNG")), "Boden");
+			iBoden = window.addSprite(0, MainGame.HEIGHT - 200, ImageIO.read(ResourceLoader.load("FlappyBirdBoden.PNG")), "Boden",1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
