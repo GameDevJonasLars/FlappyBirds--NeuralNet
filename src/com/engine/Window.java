@@ -57,7 +57,7 @@ public class Window extends JPanel {
 
 		}
 		for (Sprite sprite : sprites) {
-			if (sprite.isbDraw()) {
+			if (sprite.isbDraw()&&sprite.getiHeight()!=200) {
 				g2.translate(sprite.getiX() + sprite.getiWidth() / 2, sprite.getiY() + sprite.getiHeight() / 2);
 				g2 = (Graphics2D) g.create();
 				g2.rotate(sprite.getdRotate());
@@ -65,6 +65,19 @@ public class Window extends JPanel {
 				g2.dispose();
 				g2 = (Graphics2D) g;
 				g2.translate(-(sprite.getiX() + sprite.getiWidth() / 2), -(sprite.getiY() + sprite.getiHeight() / 2));
+
+			}
+		}
+		for (Sprite sprite : sprites) {
+			if (sprite.isbDraw()&&sprite.getiHeight()==200) {
+				g2.translate(sprite.getiX() + sprite.getiWidth() / 2, sprite.getiY() + sprite.getiHeight() / 2);
+				g2 = (Graphics2D) g.create();
+				g2.rotate(sprite.getdRotate());
+				g2.drawImage(sprite.getImg(), null, 0 - sprite.getiWidth() / 2, 0 - sprite.getiHeight() / 2);
+				g2.dispose();
+				g2 = (Graphics2D) g;
+				g2.translate(-(sprite.getiX() + sprite.getiWidth() / 2), -(sprite.getiY() + sprite.getiHeight() / 2));
+
 			}
 		}
 
