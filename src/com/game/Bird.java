@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.engine.Engine;
 import com.engine.Window;
 import com.graphics.Rechteck;
 import com.tools.ResourceLoader;
@@ -18,11 +19,13 @@ public class Bird {
 	private int iBoden;
 	private float fMov;
 	private double dAdd;
+	private double dÜber;
 
 	public Bird(Window window) {
 		this.window = window;
 		fMov = 0;
 		dAdd = 0;
+		dÜber = 0;
 	}
 
 	public void update() {
@@ -35,10 +38,13 @@ public class Bird {
 			}
 
 		}
-		if (Time.getDelta()>1) {
-			fMov += 0.5f*Time.getDelta();
+		if (Time.getDelta() > 1) {
+			dÜber += Time.getDelta();
+			for (int i = 0; dÜber > 1; i++) {
+				fMov += 0.5f;
 				window.getSprites().get(iBody).mov(0, (int) (fMov));
-			
+				dÜber--;
+			}
 		}
 
 		if (fMov > 0) {

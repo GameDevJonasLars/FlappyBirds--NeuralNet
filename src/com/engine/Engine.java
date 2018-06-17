@@ -20,7 +20,7 @@ import com.tools.Time;
 
 public class Engine extends Thread {
 	private boolean isRunning;
-	private int FPS_CAP;
+	public static int FPS_CAP;
 	private Window window;
 	private MouseListenerWin maus;
 	private boolean bWasPressed;
@@ -33,7 +33,7 @@ public class Engine extends Thread {
 	public Engine(Window window) {
 		isRunning = true;
 		bWasPressed = false;
-		FPS_CAP = 60;
+		FPS_CAP = 50;
 		this.window = window;
 		maus = new MouseListenerWin();
 		jonas = new Bird(window);
