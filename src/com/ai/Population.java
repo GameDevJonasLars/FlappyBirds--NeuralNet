@@ -1,5 +1,6 @@
 package com.ai;
 
+import java.io.BufferedWriter;
 import java.util.ArrayList;
 import com.tools.*;
 
@@ -227,8 +228,10 @@ public class Population {
 		
 	}
 
-	public void save() {
+	public void save(String name) {
 
+		BufferedWriter out;
+		
 	}
 
 	public void loadPopulation() {
