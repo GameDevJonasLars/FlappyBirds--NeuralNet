@@ -29,12 +29,12 @@ public class MainGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		EngineFlappyBird eng = new EngineFlappyBird(window);
-		eng.startGame(1);
-=======
+
 		eng = new EngineFlappyBird(window);
->>>>>>> e502cfdd888a893530f8c4bd7bed36c241d60d08
+		eng.startGame(1);
+
+
+
 		
 	}
 }
