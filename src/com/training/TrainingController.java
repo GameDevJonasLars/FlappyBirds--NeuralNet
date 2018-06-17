@@ -72,6 +72,11 @@ public class TrainingController extends Thread {
 				for (Bird birds : eng.birds) {
 					if (!birds.isbAlive()) {
 						temp++;
+						for (Objekte objekte : ObjektListe.lObjekte) {
+							if ("Vögel".equals(objekte.getsName())) {
+								window.getTexte().get(objekte.getiIndex()).setsText("Lebende Vögel: "+(eng.birds.size()-temp)+"/"+eng.birds.size());
+							}
+						}
 					}
 				}
 
