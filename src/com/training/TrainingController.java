@@ -20,6 +20,7 @@ public class TrainingController extends Thread {
 		this.window = window;
 		eng = new EngineFlappyBird(window);
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
+		bRunTraining = true;
 	}
 	
 	public int getiGeneration() {
@@ -37,7 +38,7 @@ public class TrainingController extends Thread {
 		while (bRunTraining) {
 			
 			while(true) {
-				
+				System.out.println("HALLO");
 				for (int i = 0; i <= (pop.size()-1) ; i++) {
 					
 					ArrayList<Double> dInput = new ArrayList<Double>();
@@ -50,7 +51,7 @@ public class TrainingController extends Thread {
 					if(!eng.birds.get(i).isbAlive()) {
 						pop.setFitness(i, eng.birds.get(i).getiPunkte());
 					}
-					else if (pop.getResults(i).get(0) > 0.5) {
+					else if (pop.getResults(i).get(0) > 0.5f) {
 						
 						eng.birds.get(i).flap();
 						
