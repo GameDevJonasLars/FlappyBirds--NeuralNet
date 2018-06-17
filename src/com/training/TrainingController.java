@@ -53,12 +53,9 @@ public class TrainingController extends Thread {
 
 						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
 
-						pop.setFitness(i, eng.birds.get(i).getiPunkte() - eng.birds.get(i).getiAbstandRöhreVertikal());
-
 					} else if (pop.getResults(i).get(0) > 0.5f) {
 
 						eng.birds.get(i).flap();
-
 					}
 				}
 
@@ -70,7 +67,8 @@ public class TrainingController extends Thread {
 					}
 				}
 
-				if (temp == 10) {
+				if (temp == 9) {
+					System.out.println("hhh");
 					pop.evolve(10);
 					iGeneration++;
 					break;
