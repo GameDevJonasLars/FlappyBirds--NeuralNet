@@ -38,7 +38,9 @@ public class TrainingController extends Thread {
 
 		while (bRunTraining) {
 
-			while (true) {
+			boolean bRoundRunning = true;
+			
+			while (bRoundRunning ) {
 
 				for (int i = 0; i < (pop.size()); i++) {
 
@@ -62,16 +64,18 @@ public class TrainingController extends Thread {
 				int temp = 0;
 
 				for (Bird birds : eng.birds) {
-					if (birds.isbAlive()) {
+					if (!birds.isbAlive()) {
 						temp++;
 					}
 				}
+				
+				System.out.println(temp);
 
-				if (temp == 9) {
+				if (temp == pop.size()) {
 					System.out.println("hhh");
-					pop.evolve(10);
+					pop.evolve(eng.birds.size());
 					iGeneration++;
-					break;
+					bRoundRunning = false;
 				}
 
 			}
