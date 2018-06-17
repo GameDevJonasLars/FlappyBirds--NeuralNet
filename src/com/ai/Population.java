@@ -199,7 +199,6 @@ public class Population {
 	public void selection(float surviveRate) {
 
 		int survivingNum = (int) (9 * surviveRate);
-		System.out.println(survivingNum);
 		
 		while (nPopulation != null) {
 		
