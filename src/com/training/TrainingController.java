@@ -18,11 +18,8 @@ public class TrainingController extends Thread {
 
 	public TrainingController(Window window, int iPopulationSize, int iInputNum, int iOutputNum) {
 		this.window = window;
-		System.out.println("HALLO");
 		eng = new EngineFlappyBird(window);
-		System.out.println("HALLO");
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
-		System.out.println("HALLO");
 	}
 	
 	public int getiGeneration() {
