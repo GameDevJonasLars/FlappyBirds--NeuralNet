@@ -37,7 +37,7 @@ public class TrainingController extends Thread {
 		eng.startGame(pop.size());
 
 		while (bRunTraining) {
-
+			eng.setbUpdate(true);
 
 			while (true) {
 
@@ -78,6 +78,7 @@ public class TrainingController extends Thread {
 				
 
 				if (temp == pop.size()) {
+					eng.setbUpdate(false);
 					pop.evolve(eng.birds.size());
 					iGeneration++;
 					bRoundRunning = false;

@@ -29,11 +29,12 @@ public abstract class Engine extends Thread {
 	protected RohrController rohrController;
 	protected int iTextPunkte;
 	protected int iTextHighscore;
+	protected boolean bUpdate;
 
 	public Engine(Window window) {
 		isRunning = false;
 		bWasPressed = false;
-
+		bUpdate = true;
 		FPS_CAP = 60;
 
 		this.window = window;
@@ -48,6 +49,11 @@ public abstract class Engine extends Thread {
 	public void startEngine() {
 		isRunning = true;
 		this.start();
+	}
+	
+
+	public void setbUpdate(boolean bUpdate) {
+		this.bUpdate = bUpdate;
 	}
 
 	public void render() {
@@ -78,7 +84,10 @@ public abstract class Engine extends Thread {
 				iFrames++;
 				lZeit = lTime;
 				input();
-				update();
+				if (bUpdate) {
+					update();
+				}
+				
 				render();
 			}
 			if (lTime - lZeitFrame > (1000000000)) {
