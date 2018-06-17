@@ -90,10 +90,17 @@ public class Bird {
 					}
 					iPunkte = Punkte.getiPunkte();
 					iPunkteRöhre = Punkte.getiPunkteRöhre();
-					iAbstandBoden = window.getSprites().get(iBoden).getiY()-window.getSprites().get(iBody).getiY()- window.getSprites().get(iBody).getiHeight();
-					iAbstandRöhreHorizontal = window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX() - window.getSprites().get(iBody).getiX()- window.getSprites().get(iBody).getiWidth();
+					iAbstandBoden = window.getSprites().get(iBoden).getiY() - window.getSprites().get(iBody).getiY()
+							- window.getSprites().get(iBody).getiHeight();
+					iAbstandRöhreHorizontal = window.getSprites()
+							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX()
+							- window.getSprites().get(iBody).getiX() - window.getSprites().get(iBody).getiWidth();
+					iAbstandRöhreVertikal = (window.getSprites()
+							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiY() - 100)
+							- (window.getSprites().get(iBody).getiY()
+									+ window.getSprites().get(iBody).getiHeight() / 2);
 				}
-				
+
 			} else {
 				window.getSprites().get(iBody).mov(-3, 0);
 			}
@@ -138,9 +145,16 @@ public class Bird {
 					}
 					iPunkte = Punkte.getiPunkte();
 					iPunkteRöhre = Punkte.getiPunkteRöhre();
-					iAbstandBoden = window.getSprites().get(iBoden).getiY()-window.getSprites().get(iBody).getiY()- window.getSprites().get(iBody).getiHeight();
-					iAbstandRöhreHorizontal = window.getSprites().get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX() - window.getSprites().get(iBody).getiX()- window.getSprites().get(iBody).getiWidth();
-					System.out.println(iAbstandRöhreHorizontal);
+					iAbstandBoden = window.getSprites().get(iBoden).getiY() - window.getSprites().get(iBody).getiY()
+							- window.getSprites().get(iBody).getiHeight();
+					iAbstandRöhreHorizontal = window.getSprites()
+							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreOben()).getiX()
+							- window.getSprites().get(iBody).getiX() - window.getSprites().get(iBody).getiWidth();
+					iAbstandRöhreVertikal = (window.getSprites()
+							.get(RohrController.rohre.get(iPunkteRöhre).getiRöhreUnten()).getiY() - 100)
+							- (window.getSprites().get(iBody).getiY()
+									+ window.getSprites().get(iBody).getiHeight() / 2);
+					System.out.println(iAbstandRöhreVertikal);
 
 				}
 			} else {
