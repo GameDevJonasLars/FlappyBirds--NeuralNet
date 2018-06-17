@@ -15,6 +15,7 @@ public class TrainingController extends Thread {
 	public TrainingController(int iPopulationSize, int iInputNum, int iOutputNum) {
 		
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
+		bRunTraining = true;
 		
 	}
 	
