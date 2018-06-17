@@ -20,8 +20,6 @@ public class MainGame {
 
 	public static void main(String[] args) {
 		Window window = new Window();
-		Engine eng = new Engine(window);
-		eng.start();
 		frame = new Frame();
 		frame.add(window);
 		try {
@@ -30,5 +28,7 @@ public class MainGame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		EngineFlappyBird eng = new EngineFlappyBird(window);
+		
 	}
 }
