@@ -79,7 +79,7 @@ public class TrainingController extends Thread {
 
 					} else if (pop.getResults(i).get(0) > 0.5f) {
 
-						System.out.println(eng.birds.get(i).getiAbstandRöhreVertikal());
+						
 						eng.birds.get(i).flap();
 					}
 				}
