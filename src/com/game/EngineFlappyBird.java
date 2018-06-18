@@ -45,7 +45,7 @@ public class EngineFlappyBird extends Engine {
 				break;
 			}
 		}
-		if (restartGame&&spielen) {
+		if (restartGame && spielen) {
 			restartGame();
 		}
 		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscoreRöhre());
@@ -62,10 +62,12 @@ public class EngineFlappyBird extends Engine {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte",1);
-		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore",1);
-		iGeneration = window.addText("Generation: 1", 800, 110, "TextGeneration",1);
-		iVögel = window.addText("Lebende Vögel:", 800, 140, "Vögel",1);
+		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte", 1);
+		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore", 1);
+		if (!spielen) {
+			iGeneration = window.addText("Generation: 1", 800, 110, "TextGeneration", 1);
+			iVögel = window.addText("Lebende Vögel:", 800, 140, "Vögel", 1);
+		}
 		for (Bird bird : birds) {
 			bird.init();
 		}
