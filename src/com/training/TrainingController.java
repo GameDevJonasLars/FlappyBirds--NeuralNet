@@ -22,7 +22,7 @@ public class TrainingController extends Thread {
 
 	public TrainingController(Window window, int iPopulationSize, int iInputNum, int iOutputNum) {
 		this.window = window;
-		eng = new EngineFlappyBird(window);
+		eng = new EngineFlappyBird(window, false);
 		pop = new Population(iPopulationSize, iInputNum, iOutputNum);
 		bRunTraining = true;
 

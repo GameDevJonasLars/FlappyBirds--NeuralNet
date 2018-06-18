@@ -15,9 +15,11 @@ public class EngineFlappyBird extends Engine {
 	public List<Bird> birds;
 	public int iGeneration;
 	public int iVögel;
+	public boolean spielen;
 
-	public EngineFlappyBird(Window window) {
+	public EngineFlappyBird(Window window, boolean spielen) {
 		super(window);
+		this.spielen = spielen;
 		birds = new ArrayList<Bird>();
 
 	}
@@ -35,6 +37,16 @@ public class EngineFlappyBird extends Engine {
 		window.getTexte().get(iTextPunkte).setsText("Punkte: " + Punkte.getiPunkteRöhre());
 		if (Punkte.getiPunkte() > Punkte.getiHighscore()) {
 			Punkte.setiHighscore(Punkte.getiPunkte());
+		}
+		boolean restartGame = true;
+		for (Bird bird : birds) {
+			if (bird.isbAlive()) {
+				restartGame = false;
+				break;
+			}
+		}
+		if (restartGame&&spielen) {
+			restartGame();
 		}
 		window.getTexte().get(iTextHighscore).setsText("Highscore: " + Punkte.getiHighscoreRöhre());
 	}
@@ -73,7 +85,7 @@ public class EngineFlappyBird extends Engine {
 
 	@Override
 	public void input() {
-		if (maus.isbPressed() && !bWasPressed) {
+		if (maus.isbPressed() && !bWasPressed && spielen) {
 			bWasPressed = true;
 			for (Bird bird : birds) {
 				bird.flap();

@@ -83,7 +83,7 @@ public abstract class Engine extends Thread {
 				Time.lDelta = lTime - lZeit;
 				iFrames++;
 				lZeit = lTime;
-				//input();
+				input();
 				if (bUpdate) {
 					update();
 				}
@@ -91,7 +91,7 @@ public abstract class Engine extends Thread {
 				render();
 			}
 			if (lTime - lZeitFrame > (1000000000)) {
-				MainGame.frame.setTitle(MainGame.TITLE + " FPS: " + iFrames);
+				MainGame.controller.frame.setTitle(MainGame.TITLE + " FPS: " + iFrames);
 				iFrames = 0;
 				lZeitFrame = lTime;
 			}
