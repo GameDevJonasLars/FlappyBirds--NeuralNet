@@ -46,10 +46,10 @@ public class Population {
 		ArrayList<Integer> iStructure = new ArrayList<Integer>();
 		iStructure.add(iInputNum);
 
-		int iLayerNum = (int) (Math.random() * (iInputNum * 10)) + 1;
+		int iLayerNum = (int) (Math.random() * (iInputNum * 2)) + 1;
 
 		for (int iZ = 0; iZ <= iLayerNum; iZ++) {
-			iStructure.add((int) (Math.random() * (iInputNum * 450)) + iInputNum * 3);
+			iStructure.add((int) (Math.random() * (iInputNum * 30)) + iInputNum * 3);
 		}
 		
 		iStructure.add(iOutputNum);
@@ -196,9 +196,9 @@ public class Population {
 		return nNetworkCopy;
 	}
 	
-	public void selection(float surviveRate) {
+	public void selection(float surviveRate, int iPopSize) {
 
-		int survivingNum = (int) (9 * surviveRate);
+		int survivingNum = (int) (iPopSize * surviveRate);
 		
 		while (nPopulation != null) {
 		
@@ -217,7 +217,7 @@ public class Population {
 	
 	public void evolve(int iNewPopulationSize) {
 
-		selection(0.25f);
+		selection(0.25f, iNewPopulationSize);
 		
 		int iOldSize = nPopulation.size();
 
