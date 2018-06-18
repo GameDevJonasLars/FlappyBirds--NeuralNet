@@ -50,7 +50,7 @@ public class TrainingController extends Thread {
 
 					ArrayList<Double> dInput = new ArrayList<Double>();
 					// dInput.add((double) eng.birds.get(i).getiAbstandBoden());
-					//dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
+					dInput.add((double) eng.birds.get(i).getiAbstandRöhreHorizontal());
 					dInput.add((double) eng.birds.get(i).getiAbstandRöhreVertikal());
 
 					pop.giveTask(dInput, i);
@@ -61,6 +61,7 @@ public class TrainingController extends Thread {
 
 					} else if (pop.getResults(i).get(0) > 0.5f) {
 
+						System.out.println(eng.birds.get(i).getiAbstandRöhreVertikal());
 						eng.birds.get(i).flap();
 					}
 				}
