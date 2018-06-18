@@ -28,10 +28,5 @@ public class MainGame {
 		//train.start();
 		//EngineFlappyBird eng = new EngineFlappyBird(window);
 		//eng.startGame(1);
-
-		
-
-
-		
 	}
 }
