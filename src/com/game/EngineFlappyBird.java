@@ -1,6 +1,8 @@
 package com.game;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class EngineFlappyBird extends Engine {
 	public List<Bird> birds;
 	public int iGeneration;
 	public int iVögel;
+	public int iBack;
 	public boolean spielen;
 
 	public EngineFlappyBird(Window window, boolean spielen) {
@@ -64,6 +67,12 @@ public class EngineFlappyBird extends Engine {
 		}
 		iTextPunkte = window.addText("Punkte: 0", 800, 50, "TextPunkte", 1);
 		iTextHighscore = window.addText("Highscore: 0", 800, 80, "TextHighscore", 1);
+		try {
+			iBack = window.addSprite(MainGame.WIDTH-200, MainGame.HEIGHT-120, ImageIO.read(ResourceLoader.load("FlappyBirdsBack.png")), "Back",2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (!spielen) {
 			iGeneration = window.addText("Generation: 1", 800, 110, "TextGeneration", 1);
 			iVögel = window.addText("Lebende Vögel:", 800, 140, "Vögel", 1);
@@ -92,6 +101,15 @@ public class EngineFlappyBird extends Engine {
 			for (Bird bird : birds) {
 				bird.flap();
 			}
+		}
+		if (MouseInfo.getPointerInfo().getLocation().getX()>MainGame.WIDTH-200&&MouseInfo.getPointerInfo().getLocation().getY()>MainGame.HEIGHT-100&&maus.isbPressed()) {
+			MainGame.controller.frame.remove(MainGame.controller.jpGame);
+			MainGame.controller.frame.remove(MainGame.controller.jpAIGame);
+			MainGame.controller.frame.add(MainGame.controller.jpMainMenu);
+			MainGame.controller.frame.repaint();
+			MainGame.controller.frame.validate();
+			birds = new ArrayList<Bird>();
+			
 		}
 
 		if (!maus.isbPressed()) {

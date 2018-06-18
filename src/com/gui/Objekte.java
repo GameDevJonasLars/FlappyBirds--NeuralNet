@@ -7,10 +7,10 @@ import com.engine.Window;
 import com.game.MainGame;
 
 public class Objekte {
-	protected JPanel jpMainMenu;
-	protected JPanel jpAIGame;
-	protected JPanel jpGame;
-	protected JPanel jpAISettings;
+	public JPanel jpMainMenu;
+	public JPanel jpAIGame;
+	public JPanel jpGame;
+	public JPanel jpAISettings;
 	protected JButton jbAI;
 	protected JButton jbGame;
 	protected Window windowAI;
@@ -29,8 +29,11 @@ public class Objekte {
 		
 		jpMainMenu.setLayout(null);
 		jpAISettings.setLayout(null);
+		jpAIGame.setLayout(null);
+		jpGame.setLayout(null);
 		jpMainMenu.add(jbGame);
 		jpMainMenu.add(jbAI);
+
 		
 		jbAI.addActionListener(new ActionListenerBird());
 		jbGame.addActionListener(new ActionListenerBird());
